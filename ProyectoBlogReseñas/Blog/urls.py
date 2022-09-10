@@ -3,5 +3,6 @@ from Blog import views
 
 
 urlpatterns = [
+    path('', views.inicio, name="Inicio"), 
 
 ]
