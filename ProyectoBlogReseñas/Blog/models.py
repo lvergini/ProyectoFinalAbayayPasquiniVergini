@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class Categoria(models.Model):
+    pass
+
+class Blog(models.Model):
+    pass
+
+class Comentario(models.Model):
+    pass
