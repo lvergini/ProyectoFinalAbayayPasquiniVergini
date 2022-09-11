@@ -1,0 +1,18 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Login {% endblock %}
+
+{% block cuerpodelapagina %}
+<h1>Inicie sesión</h1>
+<h2>{{ mensaje }}</h2>
+
+<form action="{% url 'login' %}"  method="POST"> {% csrf_token %}
+
+    {{ form.as_p }}
+    <button type="submit">INICIAR SESIÓN</button>
+
+</form>
+
+{% endblock %}
