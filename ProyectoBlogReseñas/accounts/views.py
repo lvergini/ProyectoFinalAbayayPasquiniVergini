@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import *
+from accounts.forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -36,6 +36,13 @@ def login_request(request):
     else:
         form=AuthenticationForm()
         return render(request, 'accounts/login.html',{"form":form})
+
+def profile(request, pk):
+    usuario=User.objects.filter(pk=pk)
+    if len(usuario)!=0:
+        return render(request, "accounts/profile.html", {"usuario":usuario})
+    else:
+        return render(request, "Blog/inicio.html", {"mensaje":"No hay usuarios con esos datos"})
 
 @login_required
 def editarPerfil(request):

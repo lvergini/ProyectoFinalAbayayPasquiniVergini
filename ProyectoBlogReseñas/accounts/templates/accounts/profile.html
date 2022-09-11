@@ -1,0 +1,20 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Perfil de {{user.username}} {% endblock %}
+
+{% block cuerpodelapagina %}
+<img class="profile-image" src="{{ user.profile.image.url }}" alt="Hola">
+<h1>{user.first_name}} {{user.last_name}}</h1>
+<p>{{user.profile.descripcion}}</p>
+
+{% if request.user == user %}
+<div class="links">
+<a href="#" class="btn btn-sm btn-primary">Editar Perfil</a>
+</div>
+{% endif %}
+
+
+
+{% endblock %}
