@@ -5,7 +5,7 @@
 {% block titulopagina %} Perfil de {{user.username}} {% endblock %}
 
 {% block cuerpodelapagina %}
-<img class="profile-image" src="{{ user.perfil.imagen.url }}" alt="Imagen de {{user.username}}">
+<img class="profile-image" src="{{ user.perfil.imagen.url }}" width="200" height="200" alt="Imagen de {{user.username}}">
 <h1>{{user.first_name}} {{user.last_name}}</h1>
 <p>{{user.perfil.descripcion|safe}}</p>
 <p>{{user.perfil.pagina_web}}</p>
