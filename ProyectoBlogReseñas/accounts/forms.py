@@ -9,12 +9,33 @@ class UserRegisterForm(UserCreationForm):
     email=forms.EmailField(required=True)
     username=forms.CharField(required=True)
     #descripcion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
-    #pagina_web=forms.URLField()
-    #imagen = forms.ImageField(required=False, upload_to="imagenesPerfil")
+
     password1: forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2: forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
 
     class Meta:
         model=User
         fields=['email', 'username', 'password1', 'password2']
+        help_texts = {k:"" for k in fields}
+
+class UserEditForm(UserCreationForm):
+    email = forms.EmailField(label="Modificar E-Mail")
+    first_name = forms.CharField(label='Modificar Nombre')
+    last_name = forms.CharField(label='Modificar Apellido')
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
+    
+    class Meta:
+        model = User
+        fields = [ 'email', 'first_name', 'last_name',  'password1', 'password2']
+        help_texts = {k:"" for k in fields}
+
+class ProfileEditForm(UserCreationForm):
+    imagen = forms.ImageField(required=False, upload_to="imagenesPerfil")
+    descripcion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
+    pagina_web=forms.URLField(required=False)
+
+    class Meta:
+        model = Perfil
+        fields = ['imagen', 'descripcion', 'pagina_web']
         help_texts = {k:"" for k in fields}

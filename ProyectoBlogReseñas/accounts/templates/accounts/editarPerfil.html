@@ -1,0 +1,21 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Editar perfil {% endblock %}
+
+{% block cuerpodelapagina %}
+<h1>Edite sus datos</h1>
+<h2>{{ mensaje }}</h2>
+
+<form action="{% url 'editarPerfil' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    {{ form_usuario.as_p }}
+    {{ form_perfil.as_p }}
+    <div class="form-group">
+        <button type="submit">Editar perfil</button>
+    </div>
+
+</form>
+
+{% endblock %}

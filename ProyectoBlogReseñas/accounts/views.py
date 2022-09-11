@@ -36,3 +36,18 @@ def login_request(request):
     else:
         form=AuthenticationForm()
         return render(request, 'accounts/login.html',{"form":form})
+
+@login_required
+def editarPerfil(request):
+    if request.POST:
+        form_usuario = UserEditForm(request.POST, instance=request.user)
+        form_perfil = ProfileEditForm(request.POST, request.FILES, instance=request.user.profile)
+        if form_usuario and form_perfil:
+            form_usuario.save()
+            form_perfil.save()
+            return render('profile.html', request.user.pk)
+    else:
+        form_usuario = UserEditForm(instance=request.user)
+        form_perfil = ProfileEditForm(instance=request.user.profile)
+
+    return render(request, 'accounts/editarPerfil.html',{'form_usuario': form_usuario, 'form_perfil': form_perfil})
