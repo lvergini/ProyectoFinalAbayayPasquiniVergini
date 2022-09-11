@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Blog',
     'accounts',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,5 @@ LOGIN_URL='/accounts/login/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
