@@ -5,9 +5,11 @@
 {% block titulopagina %} Perfil de {{user.username}} {% endblock %}
 
 {% block cuerpodelapagina %}
-<img class="profile-image" src="{{ user.profile.image.url }}" alt="Hola">
-<h1>{user.first_name}} {{user.last_name}}</h1>
-<p>{{user.profile.descripcion}}</p>
+<img class="profile-image" src="{{ user.perfil.imagen.url }}" alt="Imagen de {{user.username}}">
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+<p>{{user.perfil.descripcion}}</p>
+<p>{{user.perfil.pgina_web}}</p>
+
 
 {% if request.user == user %}
 <div class="links">

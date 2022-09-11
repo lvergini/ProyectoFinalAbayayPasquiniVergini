@@ -46,13 +46,15 @@ def profile(request, pk):
 
 @login_required
 def editarPerfil(request):
-    if request.POST:
+    if request.method =="POST":
         form_usuario = UserEditForm(request.POST, instance=request.user)
         form_perfil = ProfileEditForm(request.POST, request.FILES, instance=request.user.perfil)
         if form_usuario and form_perfil:
             form_usuario.save()
             form_perfil.save()
-            return render('profile.html', request.user.pk)
+            user=request.user
+            pk=user.pk
+            return render(request, "accounts/profile.html", {"pk":pk})
     else:
         form_usuario = UserEditForm(instance=request.user)
         form_perfil = ProfileEditForm(instance=request.user.perfil)

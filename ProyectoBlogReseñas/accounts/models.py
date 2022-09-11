@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(null=True, blank=True, upload_to="imagenesPerfil")
+    imagen = models.ImageField(default="default.jpg", upload_to="imagenesPerfil")
     descripcion = models.CharField(max_length=500, blank=True)
     pagina_web=models.URLField()
 

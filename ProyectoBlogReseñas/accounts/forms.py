@@ -18,7 +18,7 @@ class UserRegisterForm(UserCreationForm):
         fields=['email', 'username', 'password1', 'password2']
         help_texts = {k:"" for k in fields}
 
-class UserEditForm(UserCreationForm):
+class UserEditForm(forms.ModelForm):
     email = forms.EmailField(label="Modificar E-Mail")
     first_name = forms.CharField(label='Modificar Nombre')
     last_name = forms.CharField(label='Modificar Apellido')
@@ -30,7 +30,7 @@ class UserEditForm(UserCreationForm):
         fields = [ 'email', 'first_name', 'last_name',  'password1', 'password2']
         help_texts = {k:"" for k in fields}
 
-class ProfileEditForm(UserCreationForm):
+class ProfileEditForm(forms.ModelForm):
     imagen = forms.ImageField(required=False)
     descripcion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
     pagina_web=forms.URLField(required=False)
