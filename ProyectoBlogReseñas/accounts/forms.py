@@ -31,7 +31,7 @@ class UserEditForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class ProfileEditForm(UserCreationForm):
-    imagen = forms.ImageField(required=False, upload_to="imagenesPerfil")
+    imagen = forms.ImageField(required=False)
     descripcion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
     pagina_web=forms.URLField(required=False)
 

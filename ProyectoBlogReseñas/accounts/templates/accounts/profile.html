@@ -11,7 +11,7 @@
 
 {% if request.user == user %}
 <div class="links">
-<a href="#" class="btn btn-sm btn-primary">Editar Perfil</a>
+<a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
 </div>
 {% endif %}
 
