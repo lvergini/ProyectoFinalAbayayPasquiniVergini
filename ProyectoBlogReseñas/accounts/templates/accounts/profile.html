@@ -8,8 +8,8 @@
 <img class="profile-image" src="{{ user.perfil.imagen.url }}" width="200" height="200" alt="Imagen de {{user.username}}">
 <h1>{{user.first_name}} {{user.last_name}}</h1>
 <p>{{user.perfil.descripcion|safe}}</p>
-<p>{{user.perfil.pagina_web}}</p>
-
+<a href="{{user.perfil.pagina_web}}" target="_blank">Página web de {{user.username}} </a>.
+</p>
 
 
 {% if request.user == user %}
