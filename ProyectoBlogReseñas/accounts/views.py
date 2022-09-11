@@ -5,16 +5,16 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-def register(request):
+def signup(request):
     if request.method=="POST":
         form=UserRegisterForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data["username"]
             form.save()
-            return render(request, "AppLibros/inicio.html", {"mensaje": f"Usuario {username} creado"})
+            return render(request, "Blog/inicio.html", {"mensaje": f"Usuario {username} creado"})
     else:
         form=UserRegisterForm()
-    return render(request, "accounts/register.html", {"form":form})
+    return render(request, "accounts/signup.html", {"form":form})
 
 def login_request(request):
     if request.method=="POST":
