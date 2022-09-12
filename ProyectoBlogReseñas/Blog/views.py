@@ -4,6 +4,9 @@ from django.shortcuts import render
 def inicio(request):
       return render(request, "Blog/inicio.html")
 
+def about(request):
+      return render(request, "Blog/about.html")
+
 def crearPost(request):
 #     if request.method=="POST":
 #         form=CrearBlog(request.POST, request.FILES)
