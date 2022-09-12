@@ -1,0 +1,27 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Editar un autor {% endblock %}
+
+{% block cuerpodelapagina %}
+<h2>Está editando la información del autor {{ nombre_autor }} </h2>
+
+<form action="{% url 'EditarAutor' id %}" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<br>
+
+
+
+{% endblock %}

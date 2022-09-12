@@ -1,0 +1,52 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Cargar una editorial {% endblock %}
+
+{% block cuerpodelapagina %}
+
+{% if miFormulario.errors %}
+
+<p style="color:red;">Están mal los datos, revisar</p>
+
+{% elif mensaje %}
+
+<h2>{{ mensaje }}</h2>
+
+<h3> Ingrese los datos de otra editorial: </h3>
+<form action="" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<br>
+
+{% else %}
+
+<h3> Ingrese los datos de la editorial que va a crear: </h3>
+<form action="" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<br>
+
+{% endif %}
+{% endblock %}
