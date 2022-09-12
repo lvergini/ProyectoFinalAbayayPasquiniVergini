@@ -1,0 +1,38 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Lista de autores {% endblock %}
+
+{% block cuerpodelapagina %}
+
+{% if mensaje %}
+<h2>{{ mensaje }}</h2>
+
+{% else %}
+
+
+<h1>Listado de autores: </h1>
+
+
+<ul>
+    {% for autor in autores %}
+
+    <li> {{ autor.apellido }}, {{ autor.nombre }} - {{ autor.email }}  </li>
+<button>
+    <a href="{% url 'EliminarAutor' autor.id %}"> Eliminar </a>
+</button>
+<button>
+    <a href="{% url 'EditarAutor' autor.id %}"> Editar </a>
+</button>
+
+</ul>
+
+    {% endfor %}
+   
+    {% endif %}
+
+    <a class="navbar-brand" href="{% url 'AutorCrear' %}">Agregar otro autor</a>´
+
+
+{% endblock %}
