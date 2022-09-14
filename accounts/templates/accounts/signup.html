@@ -1,0 +1,18 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Registro de usuario {% endblock %}
+
+{% block cuerpodelapagina %}
+<h1>Ingrese sus datos para registrarse</h1>
+<h2>{{ mensaje }}</h2>
+
+<form action="{% url 'signup' %}"  method="POST"> {% csrf_token %}
+
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+
+</form>
+
+{% endblock %}

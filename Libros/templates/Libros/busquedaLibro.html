@@ -1,0 +1,25 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Buscar un libro {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h1>Para buscar un libro, ingrese el apellido de su autor y/o su título:</h1>
+
+
+<form action="{% url 'buscarLibro' %}" method="GET"> {% csrf_token %}
+
+<p>Título:<input type="text" name="titulo", id="titulo"></p>
+
+<p>Apellido del autor:<input type="text" name="autor", id="autor"></p>
+
+
+<input type="submit", value="Buscar">
+
+</form>
+
+<h2 >{{ mensaje }}</h2>
+
+{% endblock %}
