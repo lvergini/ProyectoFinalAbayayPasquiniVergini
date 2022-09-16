@@ -22,7 +22,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   }
-  
+  .panel.panel-default{
+    overflow: visible !important;
+
+    z-index:1000;
+
+  }
   .display-4 {
     font-size: 2.5rem;
   }
@@ -31,7 +36,24 @@
       font-size: 3rem;
     }
   }
-  
+  .form-horizontal{
+    display:block;
+        margin:0 auto;
+}
+.center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;  
+}
+.block {
+  height: 200px;
+  padding-top: 15px;  
+}  
+.block2 {
+  min-height: 160px;
+  padding-top: 15px; 
+} 
   .nav-scroller {
     position: relative;
     z-index: 2;
