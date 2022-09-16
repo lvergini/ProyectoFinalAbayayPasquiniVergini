@@ -1,0 +1,31 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Tinder Libros {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h1> Todas las publicaciones: </h1>
+
+{% for post in lista_post %}
+                                     
+<li>Título: {{ post.titulo }} </li>
+
+<li>        {{ post.subtitulo }}</li>
+
+<li>Autor: {{ post.autor}} </li>
+<li>Fecha de publicación: {{ post.fecha_publicacion }}</li>
+
+<button>
+    <a href="{% url 'verPost' post.id %}"> Leer más</a> 
+    <a href="{% url 'eliminarPost' post.id %}"> Eliminar publicación</a>  
+    
+ </button> 
+
+_____________________________________________________________
+
+{% endfor %}
+
+
+{% endblock %}
