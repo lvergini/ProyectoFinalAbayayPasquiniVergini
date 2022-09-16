@@ -7,5 +7,5 @@ urlpatterns = [
     path('signup/', views.signup, name="signup"),
     path('profile/<int:pk>',views.profile,name="profile"),
     path('editarPerfil/', views.editarPerfil, name="editarPerfil"),
-    path('logout/', LogoutView.as_view(template_name="accounts/logout.html"), name="logout"),
+    path('logout/', LogoutView.as_view(template_name="accounts/logout.html"), name="logout")
 ]
