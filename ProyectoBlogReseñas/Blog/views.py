@@ -120,12 +120,12 @@ def crearCategoria(request):
         return render(request, "Blog/crearCategoria.html", {"form": form})
 
 def categoriaPosts(request, cat):
-      categoria=Categoria.objects.filter(nombre=cat)
+      categoria=Categoria.objects.filter(nombre=cat.replace('-', ' '))
       if len(categoria)!=0:
-            categoria_posts=Post.objects.filter(categoria__nombre=cat)
-            return render(request, "Blog/categoria.html", {"cat":cat, "categoria_posts":categoria_posts} )
+            categoria_posts=Post.objects.filter(categoria__nombre=cat.replace('-', ' '))
+            return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "categoria_posts":categoria_posts} )
       else:
-            return render(request, "Blog/categoria.html", {"cat":cat, "mensaje": f"Todavía no fue creada la categoría {cat}"} )
+            return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "mensaje": f"Todavía no fue creada la categoría {cat}"} )
 
 
 

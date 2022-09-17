@@ -19,7 +19,7 @@
 <li>Fecha de publicación de la reseña: {{ post.fecha_publicacion }}</li>
 <li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
 {% if post.categoria %}
-<li> Categoría: <a href="{% url 'CategoriaPosts' post.categoria %}"> {{ post.categoria }}</a> </li> 
+<li> Categoría: <a href="{% url 'CategoriaPosts' post.categoria|slugify %}"> {{ post.categoria }}</a> </li> 
 {% endif %}
 
 </ul>
