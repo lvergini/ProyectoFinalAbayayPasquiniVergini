@@ -1,0 +1,35 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %}  {{ post.titulo }} {% endblock %}
+
+{% block cuerpodelapagina %}
+{% if form.errors %}
+
+<p style="color:red;">Están mal los datos, revisar</p>
+
+{% else %}
+
+<h3> Dejá tu comentario sobre la reseña {{ post.titulo }} </h3>
+
+<form action="" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+{% endif %}
+
+<br>
+
+
+</div>
+{% endblock %}

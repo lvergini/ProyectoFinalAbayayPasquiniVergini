@@ -1,0 +1,115 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %}  {{ post.titulo }} {% endblock %}
+
+{% block cuerpodelapagina %}
+
+{{ mensaje }}
+
+<h1>Título del libro: {{ post.libro.titulo }} </h1>
+<h1>Autor: {{ post.libro.autor }} </h1>
+<h1>Editorial: {{ post.libro.editorial }} </h1>
+<h1>Año: {{ post.libro.fecha_publicacion}} </h1>
+<h1>ISBN: {{ post.libro.isbn }} </h1>
+
+{% if post.libro.imagen %}
+<h1>Imagen: {{ post.libro.imagen }} </h1>
+<img class="profile-image" src="{{ post.libro.imagen.url }}" width="200" height="200" alt="Tapa de {{post.libro.autor}}">
+
+{% endif %}
+
+<h1>{{ post.titulo }} </h1>
+
+<h2>{{ post.subtitulo }}</h2>
+
+<h3>{{ post.autor }}</h3>
+
+<p>{{ post.cuerpo|safe }}</p>
+
+
+
+<p><a href="#">Edit</a> |
+    <a href="#">Delete</a></p>
+    <p>Back to <a href="#">All Articles</a>.</p>
+
+
+
+<br/><br/>
+<hr>
+<br/>
+<form action="{% url 'like_post' post.pk %}" method="POST">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}    
+
+    {% if not liked %}
+
+
+    <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Me gusta</button> 
+
+        
+    {% else %}    
+
+    <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">Ya no me gusta</button> 
+
+
+        
+    {% endif %}    
+
+{% else %}
+<p> Iniciá sesión para dar "Me gusta" a esta reseña </p>
+
+{% endif %}
+    - {{ cantidad_likes }} Me gusta  
+</form>
+
+<hr>
+
+<h3>Comentarios</h3>
+
+{% if comentarios %}
+
+{% for comentario in comentarios %}
+
+<hr>
+
+<div data-gb-custom-block data-tag="for"></div>
+
+    <div class="comment">
+        <div class="date">{{ comentario.fecha_comentario }}</div>
+        <strong>{{ comentario.autor }}</strong>
+        <p>{{ comentario.comentario|linebreaks }}</p>
+    </div>
+
+<div data-gb-custom-block data-tag="empty">
+
+    {% if request.user == comentario.autor %}
+<div class="links">
+    <a href="{% url 'EliminarComentario' comentario.id %}"> Eliminar comentario </a>
+</div>
+
+</div>
+
+<hr>
+
+
+{% endif %}
+
+{% endfor %}
+
+
+{% else %}
+<p> Todavía no hay comentarios en esta reseña. </p>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+
+<a href="{% url 'CrearComentario' post.pk  %}">Agregar comentario</a>
+
+{% endif %}
+
+
+{% endblock %}

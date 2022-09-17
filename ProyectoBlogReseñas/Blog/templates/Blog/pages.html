@@ -6,22 +6,34 @@
 
 {% block cuerpodelapagina %}
 
-<h1> Todas las publicaciones: </h1>
+<h1> Todas las reseñas: </h1>
 
-{% for post in lista_post %}
-                                     
-<li>Título: {{ post.titulo }} </li>
+{% for post in posts %}
 
-<li>        {{ post.subtitulo }}</li>
+<li> <h1> {{ post.titulo }} </h1> </li>
 
-<li>Autor: {{ post.autor}} </li>
+<h2>{{ post.subtitulo }}</h2>
+
+<h3>Libro reseñado: {{ post.libro.titulo }}, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </h3>  </li>
+
+
+<li>Autor de la reseña: {{ post.autor}} </li>
 <li>Fecha de publicación: {{ post.fecha_publicacion }}</li>
 
+<div>
+{% if post.libro.imagen %}
+<img class="card-img-right flex-auto d-none d-md-block" data-src="{{ post.libro.imagen.url }}" alt="Portada de {{ post.libro.titulo }}">
+{% endif %}
+</div>
+
 <button>
-    <a href="{% url 'verPost' post.id %}"> Leer más</a> 
-    <a href="{% url 'eliminarPost' post.id %}"> Eliminar publicación</a>  
-    
- </button> 
+    <a href="{% url 'PostVista' post.id %}"> Leer más</a> 
+</button> 
+{% if request.user == post.autor %}
+    <a href="{% url 'eliminarPost' post.id %}"> Eliminar reseña</a>  
+    <a href=""> Editar reseña</a>  
+{% endif %}
+
 
 _____________________________________________________________
 
