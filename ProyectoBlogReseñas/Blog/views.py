@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from .models import *
 from Libros.models import Libro
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
-# Create your views here.
 def inicio(request):
       return render(request, "Blog/inicio.html")
 
@@ -17,14 +18,14 @@ def crearPost(request):
     if request.method=="POST":
         form=CrearPost(request.POST, request.FILES)
         if form.is_valid():
-            autor=User.objects.get(username=request.user) #ESTO ES IMPORTANTE!!!!!!!!!!!!!!!!!11
+            autor=User.objects.get(username=request.user) 
             info=form.cleaned_data
             titulo= info['titulo']
             subtitulo= info['subtitulo']
-            # libro= Libro.objects.get(id = info["libro"].id)
-            # imagen= info['imagen']
+            libro= Libro.objects.get(pk = info["libro"].id)
+            imagen= info['imagen']
             cuerpo=info['cuerpo']
-            post=Post(titulo=titulo, subtitulo=subtitulo, cuerpo=cuerpo, autor=autor)
+            post=Post(titulo=titulo, subtitulo=subtitulo, libro=libro, imagen=imagen, cuerpo=cuerpo, autor=autor)
             post.save()
             return render(request, "Blog/inicio.html", {"mensaje": f"Se creó el post {titulo}"})
         else:
@@ -32,21 +33,43 @@ def crearPost(request):
     
     else:
         form=CrearPost()
-        return render(request, "blog/crearPost.html", {"form": form})
+        return render(request, "Blog/crearPost.html", {"form": form})
 
-def verPost(request, pk):
+@login_required
+def likeView(request, pk):
+      post = get_object_or_404(Post, id=request.POST.get('post_id'))
+      liked=False
+
+      if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+
+      else:
+            post.likes.add(request.user)
+
+      return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
+
+def postVista(request, pk):
       post=Post.objects.filter(id=pk)
       if len(post)!=0:
             post = post[0]
-            return render(request, "Blog/verPost.html", {"post":post})
+            comentarios=Comentario.objects.filter(post=post.id)
+            cantidad_likes=post.cantidad_likes()
+            liked=post.likes.filter(id=request.user.id)
+            if len(liked)!=0:
+                  liked=True
+            
+            else:
+                  liked=False
+
+            return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked})
       else: 
-            return render (request, "Blog/inicio.html", {"mensaje": "No hay páginas aún"}) 
+            return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo."}) 
 
                   
 #Para mostrar todas las publicaciones
-def pages(request):
-      lista_post=Post.objects.all()
-      return render(request, "Blog/pages.html", {"lista_post": lista_post })
+def listaPosts(request):
+      posts=Post.objects.all()
+      return render(request, "Blog/pages.html", {"posts": posts })
 
 #Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
 def eliminarPost(request, id):
