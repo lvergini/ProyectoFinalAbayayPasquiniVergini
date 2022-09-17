@@ -5,6 +5,7 @@ from .models import *
 from Libros.models import Libro
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #--------------Inicio y about------------------------------------------------------------
 
@@ -73,7 +74,10 @@ def postVista(request, pk):
 #Para mostrar todas las publicaciones
 def listaPosts(request):
       posts=Post.objects.all()
-      return render(request, "Blog/pages.html", {"posts": posts, "categorias": obtenerCategorias(request)})
+      paginator = Paginator(posts, 3)
+      pagina = request.GET.get('pagina')
+      pagina_obj = paginator.get_page(pagina)
+      return render(request, "Blog/pages.html", {"posts": posts, 'pagina_obj': pagina_obj, "categorias": obtenerCategorias(request)})
 
 #YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
 @login_required
