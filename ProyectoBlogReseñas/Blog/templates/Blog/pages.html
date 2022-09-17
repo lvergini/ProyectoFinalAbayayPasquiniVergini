@@ -29,8 +29,8 @@
     <a href="{% url 'PostVista' post.id %}"> Leer más</a> 
 </button> 
 {% if request.user == post.autor %}
-    <a href="{% url 'eliminarPost' post.id %}"> Eliminar reseña</a>  
     <a href=""> Editar reseña</a>  
+    <a href="{% url 'eliminarPost' post.id %}"> Eliminar reseña</a>  
 {% endif %}
 
 

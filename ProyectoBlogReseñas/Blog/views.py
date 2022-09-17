@@ -74,11 +74,12 @@ def listaPosts(request):
       return render(request, "Blog/pages.html", {"posts": posts })
 
 #YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
+@login_required
 def eliminarPost(request, id):
       posteo=Post.objects.get(id=id)
       posteo.delete()
-      lista_post=Post.objects.all()
-      return render(request, "Blog/pages.html", {"lista_post": lista_post })
+      posts=Post.objects.all()
+      return render(request, "Blog/pages.html", {"posts": posts })
       
 #Para modificar una publicación
 """ def editarPost(request, id):
