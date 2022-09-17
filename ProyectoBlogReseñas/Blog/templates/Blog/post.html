@@ -12,7 +12,7 @@
 
 <h3>{{ post.subtitulo }}</h3>
 
-<h4>Reseña creada por: <a href="{% url 'profile' post.autor.id %}">{{ post.autor }} </a> </h4>
+<h4>Reseña creada por: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </h4>
 
 <hr>
 
