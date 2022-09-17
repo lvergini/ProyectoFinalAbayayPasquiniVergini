@@ -6,19 +6,27 @@ from ckeditor.fields import RichTextField
 
 
 class Categoria(models.Model):
-    #nombre=models.CharField(max_length=50)
-    pass
+    nombre=models.CharField(max_length=50, null=True)
+    
+    class Meta:
+        ordering = ["nombre"]
+    
+    def __str__(self):
+        return self.nombre
 
 class Post(models.Model):
     titulo = models.CharField(max_length=250)
     subtitulo=models.CharField(max_length=250)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
-    #categoria=models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+    categoria=models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
     libro=models.ForeignKey(Libro, on_delete=models.CASCADE, null=True)
     imagen=models.ImageField(null=True, blank=True, upload_to="imagenesBlog")
     cuerpo=RichTextField()
     fecha_publicacion=models.DateTimeField(auto_now_add=True)
     likes=models.ManyToManyField(User, related_name='likes')
+
+    class Meta:
+        ordering = ["-fecha_publicacion"]
 
     def cantidad_likes(self):
         return self.likes.count()

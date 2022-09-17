@@ -25,10 +25,11 @@ def crearPost(request):
             info=form.cleaned_data
             titulo= info['titulo']
             subtitulo= info['subtitulo']
+            categoria=Categoria.objects.get(pk = info["categoria"].id)
             libro= Libro.objects.get(pk = info["libro"].id)
             imagen= info['imagen']
             cuerpo=info['cuerpo']
-            post=Post(titulo=titulo, subtitulo=subtitulo, libro=libro, imagen=imagen, cuerpo=cuerpo, autor=autor)
+            post=Post(titulo=titulo, subtitulo=subtitulo, categoria=categoria, libro=libro, imagen=imagen, cuerpo=cuerpo, autor=autor)
             post.save()
             return render(request, "Blog/inicio.html", {"mensaje": f"Se creó el post {titulo}"})
         else:
