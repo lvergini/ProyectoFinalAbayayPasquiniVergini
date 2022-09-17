@@ -6,6 +6,13 @@
 
 {% block cuerpodelapagina %}
 
+
+{% if mensaje %}
+
+<h2>{{ mensaje }}</h2>
+
+{% elif categoria_posts %}
+
 <h2> Reseñas dentro de la categoría {{ cat }} </h2>
 
 <br>
@@ -29,10 +36,15 @@
     <a href="{% url 'eliminarPost' post.id %}"> Eliminar reseña</a>  
 {% endif %}
 
-
 _____________________________________________________________
 
 
 {% endfor %}
+
+{% else %}
+
+<h2> Todavía no hay ninguna reseña en la categoría {{ cat }} </h2>
+
+{% endif %}
 
 {% endblock %}
