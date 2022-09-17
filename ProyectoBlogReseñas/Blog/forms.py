@@ -12,7 +12,7 @@ class CrearPost(forms.Form):
     subtitulo=forms.CharField(max_length=250)
     libro=MyLibroChoiceField(queryset=Libro.objects.all())
     imagen= forms.ImageField(required=False, label="Imagen")
-    cuerpo=forms.CharField(widget=CKEditorWidget, max_length=500)
+    cuerpo=forms.CharField(widget=CKEditorWidget)
 
 class CrearComentario(forms.Form):
     comentario = forms.CharField(widget=forms.Textarea, max_length=1000)
