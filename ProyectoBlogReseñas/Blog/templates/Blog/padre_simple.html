@@ -58,6 +58,50 @@
       </header>
 
     
+      <div class="nav py-1 mb-2 panel panel-default">
+        <nav class="nav d-flex justify-content-between">
+
+          <!-- hola -->    
+             
+              <div class="dropdown panel panel-default" >
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                    Libros
+                  </button>
+                  <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="{% url 'LibroCrear' %}">Cargar un libro</a>
+                    <a class="dropdown-item" href="{% url 'BusquedaLibro' %}">Buscar un libro</a>        
+                  </div> 
+                </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                  Autores
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <a class="dropdown-item" href="{% url 'AutorCrear' %}">Cargar un autor</a>                  
+                  <a class="dropdown-item" href="{% url 'ListaAutores' %}">Lista de autores</a>
+                </div>            
+              </div>                
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                  Editoriales
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                  <a class="dropdown-item" href="{% url 'EditorialCrear' %}">Cargar una editorial</a>             
+                </div>            
+              </div>          
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                  Blog
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                  <a class="dropdown-item" href="{% url 'ListaPosts' %}">Lista de posts</a>             
+
+                  <a class="dropdown-item" href="{% url 'CrearPost' %}">Crear blog</a>             
+                </div>            
+              </div>            
+        
+        </nav>  
+      </div>
 
     
 
