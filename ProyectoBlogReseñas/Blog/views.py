@@ -6,12 +6,15 @@ from Libros.models import Libro
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+#--------------Inicio y about------------------------------------------------------------
 
 def inicio(request):
       return render(request, "Blog/inicio.html")
 
 def about(request):
       return render(request, "Blog/about.html")
+
+#--------------Posts------------------------------------------------------------
 
 @login_required
 def crearPost(request):
@@ -64,14 +67,13 @@ def postVista(request, pk):
             return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked})
       else: 
             return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo."}) 
-
-                  
+                
 #Para mostrar todas las publicaciones
 def listaPosts(request):
       posts=Post.objects.all()
       return render(request, "Blog/pages.html", {"posts": posts })
 
-#Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
+#YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
 def eliminarPost(request, id):
       posteo=Post.objects.get(id=id)
       posteo.delete()
@@ -87,4 +89,45 @@ def eliminarPost(request, id):
                   info=form.cleaned_data
                   posteo. =info[""] """
 
+def busquedaPost(request):
+    return render(request, "Blog/busquedaPost.html")
 
+def buscarPost(request): #para completar
+      pass
+
+#--------------Comentarios------------------------------------------------------------
+
+@login_required
+def crearComentario(request, pk):
+      #post = Post.objects.filter(pk=pk)
+      post= Post.objects.get(pk = pk)
+
+      if request.method=="POST":
+            form=CrearComentario(request.POST)
+            #   commentarios=post.comentarios.filter(active=True)
+            if form.is_valid():
+                  autor=User.objects.get(username=request.user) #ESTO ES IMPORTANTE!!!!!!!!!!!!!!!!!11
+                  info=form.cleaned_data
+                  comentario=info["comentario"]
+                  comentario=Comentario(post=post, autor=autor, comentario=comentario)
+                  comentario.save()
+                  return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
+            else:
+                  return render(request, "Blog/post.html", {"mensaje": "Error. Se ingresaron mal los datos"})
+    
+      else:
+            form=CrearComentario()
+            return render(request, "Blog/crearComentario.html", {"form": form, "post":post})
+
+@login_required
+def eliminarComentario(request, id):
+    comentario=Comentario.objects.get(id=id)
+    post=Post.objects.filter(comentarios=comentario.id)
+    pk= post[0].id
+
+    if comentario.autor==request.user:
+          comentario.delete()
+          return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
+
+def editarComentario(request, id):
+      pass

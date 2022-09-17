@@ -9,7 +9,12 @@ urlpatterns = [
     path('post/<int:pk>',views.postVista, name="PostVista"),
     path ('pages/', views.listaPosts, name="ListaPosts"),
     path('eliminarPost/<id>', views.eliminarPost, name="eliminarPost"),
+    #path('busquedaPost/', views.busquedaPost, name='BusquedaPost'),
+    #path('buscarPost/', views.buscarPost, name='buscarPost'),
     # path('editarPost/<id>', views.editarPost, name="editarPost"),
+
+    path ('post/<int:pk>/crearComentario/', views.crearComentario, name="CrearComentario"),
+    path('eliminarComentario/<id>', views.eliminarComentario, name='EliminarComentario'),
     path('like/<int:pk>', views.likeView, name="like_post"),
 
 

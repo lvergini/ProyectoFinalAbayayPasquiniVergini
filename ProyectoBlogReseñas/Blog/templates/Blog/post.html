@@ -85,14 +85,16 @@
 
 <div data-gb-custom-block data-tag="empty">
 
+    {% if request.user == comentario.autor %}
+<div class="links">
+    <a href="{% url 'EliminarComentario' comentario.id %}"> Eliminar comentario </a>
+</div>
 
 </div>
 
 <hr>
-{% if request.user == comentario.autor %}
-<div class="links">
-    <a href=""> Eliminar </a>
-</div>
+
+
 {% endif %}
 
 {% endfor %}
@@ -105,7 +107,9 @@
 
 {% if user.is_authenticated %}
 
- {% endif %}
+<a href="{% url 'CrearComentario' post.pk  %}">Agregar comentario</a>
+
+{% endif %}
 
 
 {% endblock %}
