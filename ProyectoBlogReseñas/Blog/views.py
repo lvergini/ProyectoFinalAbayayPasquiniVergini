@@ -9,10 +9,11 @@ from django.urls import reverse
 #--------------Inicio y about------------------------------------------------------------
 
 def inicio(request):
-      return render(request, "Blog/inicio.html")
 
+      return render(request, "Blog/inicio.html", {"categorias": obtenerCategorias(request)})
+    
 def about(request):
-      return render(request, "Blog/about.html")
+      return render(request, "Blog/about.html", {"categorias": obtenerCategorias(request)})
 
 #--------------Posts------------------------------------------------------------
 
@@ -65,14 +66,14 @@ def postVista(request, pk):
             else:
                   liked=False
 
-            return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked})
+            return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked, "categorias": obtenerCategorias(request)})
       else: 
             return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo."}) 
                 
 #Para mostrar todas las publicaciones
 def listaPosts(request):
       posts=Post.objects.all()
-      return render(request, "Blog/pages.html", {"posts": posts })
+      return render(request, "Blog/pages.html", {"posts": posts, "categorias": obtenerCategorias(request)})
 
 #YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
 @login_required
@@ -117,7 +118,7 @@ def crearCategoria(request):
     
     else:
         form=CrearCategoria()
-        return render(request, "Blog/crearCategoria.html", {"form": form})
+        return render(request, "Blog/crearCategoria.html", {"form": form, "categorias": obtenerCategorias(request)})
 
 def categoriaPosts(request, cat):
       categoria=Categoria.objects.filter(nombre=cat.replace('-', ' '))
@@ -127,8 +128,9 @@ def categoriaPosts(request, cat):
       else:
             return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "mensaje": f"Todavía no fue creada la categoría {cat}"} )
 
-
-
+def obtenerCategorias(request):
+      categorias=Categoria.objects.all()
+      return categorias
 
 #--------------Comentarios------------------------------------------------------------
 

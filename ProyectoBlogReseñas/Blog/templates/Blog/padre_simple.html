@@ -99,8 +99,23 @@
 
                   <a class="dropdown-item" href="{% url 'CrearPost' %}">Crear blog</a>             
                 </div>            
-              </div>            
-        
+              </div>    
+              {% if categorias %}
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                  Categorías
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                  
+                  {% for categoria in categorias %}
+                  <a class="dropdown-item" href="{% url 'CategoriaPosts' categoria|slugify %}"> {{ categoria }}</a>             
+                  {% endfor %} 
+                </div>   
+                
+              </div>   
+              
+
+              {% endif %}
         </nav>  
       </div>
 
