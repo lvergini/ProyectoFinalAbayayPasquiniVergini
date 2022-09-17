@@ -19,6 +19,9 @@ class CrearPost(forms.Form):
     imagen= forms.ImageField(required=False, label="Imagen")
     cuerpo=forms.CharField(widget=CKEditorWidget)
 
+class CrearCategoria(forms.Form):
+    nombre = forms.CharField(max_length=50)
+
 class CrearComentario(forms.Form):
     comentario = forms.CharField(widget=forms.Textarea, max_length=1000)
 

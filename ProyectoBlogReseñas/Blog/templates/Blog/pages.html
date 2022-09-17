@@ -14,16 +14,12 @@
 
 <h2>{{ post.subtitulo }}</h2>
 
-
+<ul>
 <li>Libro reseñado: {{ post.libro.titulo }}, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
 <li>Fecha de publicación de la reseña: {{ post.fecha_publicacion }}</li>
-<li>Autor de la reseña: {{ post.autor}} </li>
+<li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
+</ul>
 
-<div>
-{% if post.libro.imagen %}
-<img class="card-img-right flex-auto d-none d-md-block" data-src="{{ post.libro.imagen.url }}" alt="Portada de {{ post.libro.titulo }}">
-{% endif %}
-</div>
 
 <button>
     <a href="{% url 'PostVista' post.id %}"> Leer más</a> 

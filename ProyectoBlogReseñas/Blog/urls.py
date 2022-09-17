@@ -12,6 +12,8 @@ urlpatterns = [
     #path('busquedaPost/', views.busquedaPost, name='BusquedaPost'),
     #path('buscarPost/', views.buscarPost, name='buscarPost'),
     # path('editarPost/<id>', views.editarPost, name="editarPost"),
+    path('crearCategoria/', views.crearCategoria, name="CrearCategoria"),
+    path('categoria/<str:cat>/', views.categoriaPosts, name="CategoriaPosts"),
 
     path ('post/<int:pk>/crearComentario/', views.crearComentario, name="CrearComentario"),
     path('eliminarComentario/<id>', views.eliminarComentario, name='EliminarComentario'),

@@ -1,0 +1,52 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Crear una categoría {% endblock %}
+
+{% block cuerpodelapagina %}
+
+{% if form.errors %}
+
+<p style="color:red;">Están mal los datos, revisar</p>
+
+{% elif mensaje %}
+
+<h2>{{ mensaje }}</h2>
+
+<h3> Ingrese otra categoría: </h3>
+<form action="" method="POST"> {% csrf_token %}
+
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit" , value="Enviar">
+
+</form>
+
+<br>
+
+{% else %}
+
+<h3> Ingrese el nombre de la categoría: </h3>
+<form action="" method="POST"> {% csrf_token %}
+
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit" , value="Enviar">
+
+</form>
+
+<br>
+
+{% endif %}
+{% endblock %}

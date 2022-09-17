@@ -97,6 +97,29 @@ def busquedaPost(request):
 def buscarPost(request): #para completar
       pass
 
+#--------------Categorías------------------------------------------------------------
+
+def crearCategoria(request):
+    if request.method=="POST":
+        form=CrearCategoria(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            nombre=info["nombre"]
+            categoria=Categoria(nombre=nombre)
+            categoriaEnBase=Categoria.objects.filter(nombre=nombre)
+            if len(categoriaEnBase)!=0:
+                return render(request, "Blog/crearCategoria.html", {"mensaje": f"Ya existe la categoría {nombre}", "form":form})
+            else: 
+                categoria.save()
+            return render(request, "Blog/inicio.html", {"mensaje": f"Se creó la categoría {nombre}"})
+        else:
+            return render(request, "Blog/crearCategoria.html", {"mensaje": "Error. Se ingresaron mal los datos"})
+    
+    else:
+        form=CrearCategoria()
+        return render(request, "Blog/crearCategoria.html", {"form": form})
+
+
 #--------------Comentarios------------------------------------------------------------
 
 @login_required
