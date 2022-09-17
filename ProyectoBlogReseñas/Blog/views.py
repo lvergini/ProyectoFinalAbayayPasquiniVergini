@@ -128,6 +128,22 @@ def eliminarComentario(request, id):
           comentario.delete()
           return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
 
-@login_required
-def editarComentario(request, id):
-      pass
+# @login_required
+# def editarComentario(request, id):
+#       comentario=Comentario.objects.get(id=id)
+#       if request.method=="POST":
+#             form=CrearComentario(request.POST)
+#             if form.is_valid():
+#                   info=form.cleaned_data
+#                   comentario=info["nombre"]
+#                   comentario.save()
+#                   post=Post.objects.filter(comentarios=comentario.id)
+#                   pk= post[0].id
+#                   comentarios=Comentario.objects.all()
+#                   return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
+#             else:
+#                   return render(request, "Blog/post.html", {"mensaje": "Error. Se ingresaron mal los datos"})
+    
+#       else:
+#             form=CrearComentario(initial={"comentario":comentario.comentario})
+#             return render(request, "Blog/editarComentario.html", {"form": form})

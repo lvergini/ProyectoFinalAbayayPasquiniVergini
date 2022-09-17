@@ -96,7 +96,8 @@
 <div data-gb-custom-block data-tag="empty">
 
     {% if request.user == comentario.autor %}
-<div class="links">
+
+    <div class="links">
     <a href="{% url 'EliminarComentario' comentario.id %}"> Eliminar comentario </a>
 </div>
 

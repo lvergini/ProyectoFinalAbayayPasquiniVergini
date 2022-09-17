@@ -1,0 +1,26 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Editar comentario {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<form action="{% url 'EditarComentario' comentario.id %}" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<br>
+
+
+
+{% endblock %}

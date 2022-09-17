@@ -2,17 +2,35 @@
 
 {% load static %}
 
-{% block titulopagina %} Perfil de {{user.username}} {% endblock %}
+{% block titulopagina %} Perfil de {{ usuario.username }} {% endblock %}
 
 {% block cuerpodelapagina %}
-<img class="profile-image" src="{{ user.perfil.imagen.url }}" width="200" height="200" alt="Imagen de {{user.username}}">
-<h1>{{user.first_name}} {{user.last_name}}</h1>
-<p>{{user.perfil.descripcion|safe}}</p>
-<a href="{{user.perfil.pagina_web}}" target="_blank">Página web de {{user.username}} </a>.
-</p>
+<img class="profile-image" src="{{ usuario.perfil.imagen.url }}" width="200" height="200" alt="Imagen de {{usuario.username}}">
+<h1>{{usuario.first_name}} {{usuario.last_name}}</h1>
+<p>{{usuario.perfil.descripcion|safe}}</p>
+<a href="{{user.perfil.pagina_web}}" target="_blank">Página web de {{usuario.username}} </a>.
 
+{% if posts %}
+<hr>
+<h2> Reseñas escritas por {{usuario.username}}</h2>
 
-{% if request.user == user %}
+{% for post in posts %}
+
+<ul>
+    <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de  {{ post.libro.titulo }}, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
+
+</ul>
+<hr>
+
+{% endfor %}
+
+{% else %}
+
+<p>{{usuario.username}} todavía no escribió ninguna reseña. </p>
+
+{% endif %}
+
+{% if request.user == usuario %}
 <div class="links">
 <a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
 </div>

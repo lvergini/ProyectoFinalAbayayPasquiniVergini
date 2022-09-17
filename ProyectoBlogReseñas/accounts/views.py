@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from Blog.models import Post
 
 def signup(request):
     if request.method=="POST":
@@ -40,7 +41,9 @@ def login_request(request):
 def profile(request, pk):
     usuario=User.objects.filter(pk=pk)
     if len(usuario)!=0:
-        return render(request, "accounts/profile.html", {"usuario":usuario})
+        usuario=usuario[0]
+        posts=Post.objects.filter(autor=usuario)
+        return render(request, "accounts/profile.html", {"usuario":usuario, "posts":posts})
     else:
         return render(request, "Blog/inicio.html", {"mensaje":"No hay usuarios con esos datos"})
 
