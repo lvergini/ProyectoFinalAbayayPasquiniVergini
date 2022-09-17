@@ -119,6 +119,11 @@ def crearCategoria(request):
         form=CrearCategoria()
         return render(request, "Blog/crearCategoria.html", {"form": form})
 
+def categoriaPosts(request, cat):
+      categoria_posts=Post.objects.filter(categoria__nombre=cat)
+
+      return render(request, "Blog/categoria.html", {"cat":cat, "categoria_posts":categoria_posts} )
+
 
 #--------------Comentarios------------------------------------------------------------
 
