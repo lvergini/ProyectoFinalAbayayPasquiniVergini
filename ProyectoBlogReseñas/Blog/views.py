@@ -100,14 +100,12 @@ def buscarPost(request): #para completar
 
 @login_required
 def crearComentario(request, pk):
-      #post = Post.objects.filter(pk=pk)
       post= Post.objects.get(pk = pk)
 
       if request.method=="POST":
             form=CrearComentario(request.POST)
-            #   commentarios=post.comentarios.filter(active=True)
             if form.is_valid():
-                  autor=User.objects.get(username=request.user) #ESTO ES IMPORTANTE!!!!!!!!!!!!!!!!!11
+                  autor=User.objects.get(username=request.user) 
                   info=form.cleaned_data
                   comentario=info["comentario"]
                   comentario=Comentario(post=post, autor=autor, comentario=comentario)
@@ -130,5 +128,6 @@ def eliminarComentario(request, id):
           comentario.delete()
           return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
 
+@login_required
 def editarComentario(request, id):
       pass
