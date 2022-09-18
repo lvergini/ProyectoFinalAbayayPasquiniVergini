@@ -6,6 +6,8 @@ urlpatterns = [
     path('eliminarAutor/<id>', views.eliminarAutor, name='EliminarAutor'),
     path('editarAutor/<id>', views.editarAutor, name='EditarAutor'),
     path('listaAutores/', views.listaAutores, name='ListaAutores'),
+    path('autorVista/<id>/', views.autorVista, name="AutorVista"),
+
 
     path('editorialCrear/', views.editorialCrear, name="EditorialCrear"),
     path('libroCrear/', views.libroCrear, name="LibroCrear"),

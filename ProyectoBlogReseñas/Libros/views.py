@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from Libros.forms import *
 from Libros.models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from Blog.models import Post
 
 @login_required
 def autorCrear(request):
@@ -28,17 +30,24 @@ def autorCrear(request):
 
 def listaAutores(request):
     autores=Autor.objects.all()
+    # for autor in autores:
+    #     if len(autor.libro)!=0:
+    #         libro_posts=Post.objects.filter(libro=autor.libro)
+    #         if len(libro_posts)!=0:
+    #             return render(request, "Libro/categoria.html", {"cat":cat.title().replace('-', ' '), "categoria_posts":categoria_posts} )
+    #     else:
+    #         return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "mensaje": f"Todavía no fue creada la categoría {cat}"} )
     return render(request, "libros/listaAutores.html", {"autores":autores})
 
 
-@login_required
+@staff_member_required
 def eliminarAutor(request, id):
     autor=Autor.objects.get(id=id)
     autor.delete()
     autores=Autor.objects.all()
     return render(request, "libros/listaAutores.html", {"autores":autores})
 
-@login_required
+@staff_member_required
 def editarAutor(request, id):
     autor=Autor.objects.get(id=id)
     if request.method=="POST":
@@ -54,8 +63,6 @@ def editarAutor(request, id):
     else:
         form=AutorFormulario(initial={"nombre":autor.nombre, "apellido":autor.apellido})
         return render(request, "libros/editarAutor.html", {"formulario":form, "nombre_autor":autor.nombre, "id":autor.id})
-
-
 
 @login_required
 def editorialCrear(request):
@@ -141,3 +148,16 @@ def buscarLibro(request):
             return render(request, "libros/resultadoLibros.html", {"mensaje": f'No hay libros que contengan en su título "{titulo}"'})
     else:
         return render(request, "libros/busquedaLibro.html", {"mensaje": "¡No enviaste datos!"})
+
+def autorVista(request, id):
+    autor=Autor.objects.filter(id=id)
+    autor=autor[0]
+      #if len(autor.libro)!=0:
+    libros=Libro.objects.filter(autor=autor)
+    if len(libros)!=0:
+        for libro in libros:
+            libro_posts=Post.objects.filter(libro=libro)
+            return render(request, "libros/autorVista.html",  {"id":id, "autor": autor, "libros":libros, "libro_posts":libro_posts} )
+    else:
+        return render(request, "libros/autorVista.html",  {"id":id, "autor": autor, "libros":libros} )
+
