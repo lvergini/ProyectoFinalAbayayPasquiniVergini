@@ -9,8 +9,8 @@
 
 <ul>
 
-    <li> <strong>Nombre</strong>: {{ autor.nombre }}</li>
-    <li> <strong>Apellido</strong>: {{ autor.apellido }}</li>
+    <li> <h3> <strong>Nombre</strong>: {{ autor.nombre }}</h3></li>
+    <li> <h3> <strong>Apellido</strong>: {{ autor.apellido }}</h3></li>
 
 </ul>
 
@@ -29,7 +29,7 @@
 
     {% if libro_posts %}
 
-    <h3>Reseñas sobre {{ libro.titulo }}: </h3>
+    <h5>Reseñas sobre {{ libro.titulo }}: </h5>
 
 
     {% for post in libro_posts %}
