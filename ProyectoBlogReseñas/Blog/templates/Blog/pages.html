@@ -28,7 +28,7 @@
 
 {% if request.user == post.autor %}
 <button>
-    <a href="{% url 'editarPost' post.id %}"> Modificar publicación</a>
+    <a href="{% url 'editarPost' post.id %}"> Modificar reseña</a>
 </button>
 <button>
     <a href="{% url 'eliminarPost' post.id %}"> Eliminar reseña</a>   
