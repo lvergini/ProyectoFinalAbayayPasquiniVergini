@@ -85,7 +85,7 @@ def eliminarPost(request, id):
       posteo=Post.objects.get(id=id)
       posteo.delete()
       posts=Post.objects.all()
-      return render(request, "Blog/pages.html", {"posts": posts }) #Agregar mensaje de publi eliminada?
+      return render(request, "Blog/pages.html", {"posts": posts }) #Agregar mensaje de publi eliminada
 
       
 #Para modificar una publicación
