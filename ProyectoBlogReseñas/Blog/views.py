@@ -105,7 +105,7 @@ def editarPost(request, id):
                   return render(request, "Blog/pages.html", {"posts": posts}) #Agregar mensaje de publi modificada
                   #¿Agregar fecha de última modificación?
       else:
-            form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
+            form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
             return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id})
 
                   
