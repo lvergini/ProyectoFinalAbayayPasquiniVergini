@@ -36,10 +36,13 @@
 
 <p>{{ post.cuerpo|safe }}</p>
 
+{% if request.user == post.autor %}
+<p><a href="{% url 'editarPost' post.id %}">Editar reseña </a> |
+    <a href="#">Eliminar reseña</a></p>
+
+{% endif %}
 
 
-<p><a href="#">Edit</a> |
-    <a href="#">Delete</a></p>
 
 
 

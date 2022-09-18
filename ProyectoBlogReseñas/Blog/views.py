@@ -98,6 +98,7 @@ def editarPost(request, id):
                   posteo.titulo=info["titulo"]
                   posteo.subtitulo=info["subtitulo"]
                   posteo.categoria=Categoria.objects.get(pk = info["categoria"].id)
+                  posteo.libro=Libro.objects.get(pk = info["libro"].id)
                   posteo.imagen=info["imagen"]
                   posteo.cuerpo=info["cuerpo"]
                   posteo.save()
@@ -107,8 +108,6 @@ def editarPost(request, id):
       else:
             form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
             return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id})
-
-                  
 
 def busquedaPost(request):
     return render(request, "Blog/busquedaPost.html")
