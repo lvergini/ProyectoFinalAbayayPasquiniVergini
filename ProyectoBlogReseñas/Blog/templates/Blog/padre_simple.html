@@ -106,7 +106,7 @@
               <a class="btn btn-sm btn-outline-secondary" href="{% url 'signup' %}">Registrarse</a>
                 {% else %}
                 <p>Hola, {{ user.username }}</p>
-                <img src="{{ user.perfil.imagen.url }}" width="50" height="50"  alt="">
+                <img src="{{ user.perfil.imagen.url }}" width="50" height="50" class="rounded-circle" alt="">
                 <a class="btn btn-sm btn-outline-secondary" href="{% url 'profile' request.user.pk %}">Ver perfil</a>
                 <a class="btn btn-sm btn-outline-secondary" href="{% url 'logout' %}">Cerrar Sesión</a>
                 {% endif %}
