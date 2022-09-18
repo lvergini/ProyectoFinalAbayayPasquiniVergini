@@ -11,7 +11,7 @@ urlpatterns = [
     path('eliminarPost/<id>', views.eliminarPost, name="eliminarPost"),
     #path('busquedaPost/', views.busquedaPost, name='BusquedaPost'),
     #path('buscarPost/', views.buscarPost, name='buscarPost'),
-    # path('editarPost/<id>', views.editarPost, name="editarPost"),
+    path('editarPost/<id>', views.editarPost, name="editarPost"),
     path('crearCategoria/', views.crearCategoria, name="CrearCategoria"),
     path('categoria/<str:cat>/', views.categoriaPosts, name="CategoriaPosts"),
 

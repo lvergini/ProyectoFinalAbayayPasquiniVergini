@@ -85,16 +85,29 @@ def eliminarPost(request, id):
       posteo=Post.objects.get(id=id)
       posteo.delete()
       posts=Post.objects.all()
-      return render(request, "Blog/pages.html", {"posts": posts })
+      return render(request, "Blog/pages.html", {"posts": posts }) #Agregar mensaje de publi eliminada?
+
       
 #Para modificar una publicación
-""" def editarPost(request, id):
+def editarPost(request, id):
       posteo=Post.objects.get(id=id)
       if request.method=="POST":
            form=CrearPost(request.POST)
            if form.is_valid():
                   info=form.cleaned_data
-                  posteo. =info[""] """
+                  posteo.titulo=info["titulo"]
+                  posteo.subtitulo=info["subtitulo"]
+                  posteo.imagen=info["imagen"]
+                  posteo.cuerpo=info["cuerpo"]
+                  posteo.save()
+                  lista_post=Post.objects.all()
+                  return render(request, "Blog/pages.html", {"lista_post": lista_post}) #Agregar mensaje de publi modificada
+                  #¿Agregar fecha de última modificación?
+      else:
+            form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
+            return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id})
+
+                  
 
 def busquedaPost(request):
     return render(request, "Blog/busquedaPost.html")

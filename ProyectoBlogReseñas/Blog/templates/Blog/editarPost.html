@@ -1,0 +1,32 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Edita tu post {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h1> Editá el post {{ titulo_post }} </h1>
+{% if form.errors %}
+
+<p style="color:red;">Están mal los datos, revisar</p>
+
+{% else %}
+
+<form action="{% url 'editarPost' id %}" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Guardar cambios">
+
+</form>
+
+<br>
+
+{% endif %}
+{% endblock %}
