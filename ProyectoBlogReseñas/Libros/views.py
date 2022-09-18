@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from Libros.forms import *
 from Libros.models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from Blog.models import Post
 
 @login_required
@@ -39,14 +40,14 @@ def listaAutores(request):
     return render(request, "libros/listaAutores.html", {"autores":autores})
 
 
-@login_required
+@staff_member_required
 def eliminarAutor(request, id):
     autor=Autor.objects.get(id=id)
     autor.delete()
     autores=Autor.objects.all()
     return render(request, "libros/listaAutores.html", {"autores":autores})
 
-@login_required
+@staff_member_required
 def editarAutor(request, id):
     autor=Autor.objects.get(id=id)
     if request.method=="POST":
