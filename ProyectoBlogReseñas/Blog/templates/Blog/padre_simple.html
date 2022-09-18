@@ -71,6 +71,11 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Categorías</a>
               <ul class="dropdown-menu">
+                {% if request.user.is_authenticated %}
+
+                <li><a class="dropdown-item" href="{% url 'CrearCategoria' %}"> Crear nueva categoría </a></li>
+                {% endif %}
+
                 {% for categoria in categorias %}
 
                 <li><a class="dropdown-item" href="{% url 'CategoriaPosts' categoria|slugify %}"> {{ categoria }} </a></li>
