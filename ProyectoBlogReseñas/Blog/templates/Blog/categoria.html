@@ -23,7 +23,7 @@
 <h5>{{ post.subtitulo }}</h5>
 
 <ul>
-<li>Libro reseñado: {{ post.libro.titulo }}, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
+<li>Libro reseñado:  <em>{{ post.libro.titulo }}</em>, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
 <li>Fecha de publicación de la reseña: {{ post.fecha_publicacion }}</li>
 <li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
 </ul>
