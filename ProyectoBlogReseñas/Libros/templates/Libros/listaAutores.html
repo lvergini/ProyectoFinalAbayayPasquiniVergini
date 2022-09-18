@@ -18,7 +18,8 @@
 <ul>
     {% for autor in autores %}
 
-    <li> {{ autor.apellido }}, {{ autor.nombre }} - {{ autor.email }}  </li>
+    <li><a href="{% url 'AutorVista' autor.id %}"> {{ autor.apellido }}, {{ autor.nombre }} </a>   </li>
+    
 <button>
     <a href="{% url 'EliminarAutor' autor.id %}"> Eliminar </a>
 </button>

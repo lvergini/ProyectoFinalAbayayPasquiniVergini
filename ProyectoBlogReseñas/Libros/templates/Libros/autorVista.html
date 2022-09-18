@@ -1,0 +1,56 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Autor: {{ autor }}  {% endblock %}
+
+{% block cuerpodelapagina %}
+
+
+<ul>
+
+    <li> <strong>Nombre</strong>: {{ autor.nombre }}</li>
+    <li> <strong>Apellido</strong>: {{ autor.apellido }}</li>
+
+</ul>
+
+    {% if libros %}
+
+    <h3>Libros de {{ autor.nombre }} {{ autor.apellido }}: </h3>
+
+    {% for libro in libros %}
+
+    <h5 style="color:red;">{{ libro.titulo }}</h5>
+    <ul>
+        <li> <strong>ISBN</strong>: {{ libro.isbn }}</li>
+        <li> <strong>Fecha de publicación</strong>: {{ libro.fecha_publicacion }}</li>
+        <li> <strong>Editorial</strong> : {{ libro.editorial }}</li>
+    </ul>
+
+    {% if libro_posts %}
+
+    <h3>Reseñas sobre {{ libro.titulo }}: </h3>
+
+
+    {% for post in libro_posts %}
+    <ul>
+        <li>  <a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a> </li>
+        <li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
+    </ul>
+    {% endfor %}
+
+    {% endif %}
+
+    {% endfor %}
+    {% else %}
+
+    <p>Todavía no hay ningún libro cargado del autor {{ autor.nombre}} {{ autor.apellido }}</p>
+
+    {% endif %}
+
+ 
+    {% endblock %}
+
+
+
+
