@@ -110,7 +110,7 @@ def libroCrear(request):
     
     else:
         miFormulario=LibroFormulario()
-        return render(request, "libros/editorialCrear.html", {"formulario": miFormulario})
+        return render(request, "libros/libroCrear.html", {"formulario": miFormulario})
 
 def busquedaLibro(request):
     return render(request, "libros/busquedaLibro.html")

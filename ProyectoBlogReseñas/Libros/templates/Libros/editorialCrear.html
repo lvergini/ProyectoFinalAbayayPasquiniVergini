@@ -2,6 +2,9 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
+
 {% block titulopagina %} Cargar una editorial {% endblock %}
 
 {% block cuerpodelapagina %}
@@ -20,7 +23,7 @@
 
     <table>
 
-        {{ formulario.as_table }}
+        {{ formulario|crispy }}
 
     </table>
 
@@ -38,7 +41,7 @@
 
     <table>
 
-        {{ formulario.as_table }}
+        {{ formulario|crispy }}
 
     </table>
 
