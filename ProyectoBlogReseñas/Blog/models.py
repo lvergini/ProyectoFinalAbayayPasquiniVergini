@@ -31,6 +31,7 @@ class Post(models.Model):
     def cantidad_likes(self):
         return self.likes.count()
 
+
     def __str__(self):
         return self.titulo
 

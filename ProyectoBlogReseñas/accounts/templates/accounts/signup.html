@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block titulopagina %} Registro de usuario {% endblock %}
 
 {% block cuerpodelapagina %}
@@ -10,7 +12,7 @@
 
 <form action="{% url 'signup' %}"  method="POST"> {% csrf_token %}
 
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">Registrarse</button>
 
 </form>

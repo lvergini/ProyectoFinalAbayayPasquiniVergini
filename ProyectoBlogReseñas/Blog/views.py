@@ -66,6 +66,7 @@ def postVista(request, pk):
             
             else:
                   liked=False
+            
 
             return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked, "categorias": obtenerCategorias(request)})
       else: 

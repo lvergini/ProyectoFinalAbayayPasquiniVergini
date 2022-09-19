@@ -30,7 +30,7 @@ class Libro(models.Model):
     fecha_publicacion = models.DateField()
     editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE)
     autor = models.ForeignKey(Autor,on_delete=models.CASCADE)
-    imagen=models.ImageField(null=True, blank=True, upload_to="imagenesLibros")
+    imagen=models.ImageField(upload_to="imagenesLibros", null=True, blank=True)
     
     def __str__(self):
         return f"{self.titulo}, de {self.autor}"
