@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import *
-from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -26,7 +25,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model=User
         fields=['email', 'username', 'password1', 'password2']
-        help_texts = {k:"" for k in fields}
 
 class UserEditForm(forms.ModelForm):
     email = forms.EmailField(label="Modificar E-Mail")
@@ -38,7 +36,6 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [ 'email', 'first_name', 'last_name',  'password1', 'password2']
-        help_texts = {k:"" for k in fields}
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -49,4 +46,3 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Perfil
         fields = ['imagen', 'descripcion', 'pagina_web']
-        help_texts = {k:"" for k in fields}
