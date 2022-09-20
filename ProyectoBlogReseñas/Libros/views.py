@@ -152,7 +152,7 @@ def buscarLibro(request):
 def autorVista(request, id):
     autor=Autor.objects.filter(id=id)
     autor=autor[0]
-      #if len(autor.libro)!=0:
+
     libros=Libro.objects.filter(autor=autor)
     if len(libros)!=0:
         for libro in libros:
@@ -160,4 +160,14 @@ def autorVista(request, id):
             return render(request, "libros/autorVista.html",  {"id":id, "autor": autor, "libros":libros, "libro_posts":libro_posts} )
     else:
         return render(request, "libros/autorVista.html",  {"id":id, "autor": autor, "libros":libros} )
+
+def libroVista(request, id):
+    libro=Libro.objects.filter(id=id)
+    libro=libro[0]
+    libro_posts=Post.objects.filter(libro=libro)
+    if len(libro_posts)!=0:
+        return render(request, "libros/libroVista.html",  {"id":id, "libro":libro, "libro_posts":libro_posts})
+    else:
+        return render(request, "libros/libroVista.html",  {"id":id})
+
 

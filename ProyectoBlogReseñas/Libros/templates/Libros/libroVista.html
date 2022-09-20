@@ -1,0 +1,43 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} <em>{{ libro.titulo }}</em>  {% endblock %}
+
+{% block cuerpodelapagina %}
+
+    <h5 style="color:red;"> <em>{{ libro.titulo }}</em></h5>
+    <ul>
+        <li> <strong>Autor</strong>: {{ libro.autor }}</li>
+        <li> <strong>ISBN</strong>: {{ libro.isbn }}</li>
+        <li> <strong>Fecha de publicación</strong>: {{ libro.fecha_publicacion }}</li>
+        <li> <strong>Editorial</strong> : {{ libro.editorial }}</li>
+    </ul>
+
+    {% if libro_posts %}
+
+    <h5>Reseñas sobre {{ libro.titulo }}: </h5>
+
+
+    {% for post in libro_posts %}
+    <ul>
+        <li>  <a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a> </li>
+        <li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
+    </ul>
+    {% endfor %}
+
+    {% else %}
+
+    <h5> Todavía nadie ha subido una reseña sobre <em>{{ libro.titulo }}</em>, de {{ libro.autor }}</h5>
+
+    {% endif %}
+
+
+    <h5>FALTA AGREGAR CARGAR RESEÑA </h5>
+
+ 
+    {% endblock %}
+
+
+
+

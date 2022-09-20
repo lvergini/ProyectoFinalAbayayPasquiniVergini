@@ -13,6 +13,8 @@ urlpatterns = [
     path('libroCrear/', views.libroCrear, name="LibroCrear"),
     path('busquedaLibro/', views.busquedaLibro, name='BusquedaLibro'),
     path('buscarLibro/', views.buscarLibro, name='buscarLibro'),
+    path('libroVista/<id>/', views.libroVista, name="LibroVista"),
+
 
 
 
