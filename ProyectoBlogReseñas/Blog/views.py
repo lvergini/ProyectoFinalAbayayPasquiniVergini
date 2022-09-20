@@ -114,8 +114,25 @@ def busquedaPost(request):
     return render(request, "Blog/busquedaPost.html")
 
 def buscarPost(request): #para completar
-      pass
-
+      """ if request.GET["titulo"]:
+        titulo=request.GET["titulo"]
+        lista_busqueda=Post.objects.filter(titulo__icontains=titulo)
+        if len(lista_busqueda)!=0:
+            return render(request, "Blog/resultadosBusquedaPost", {"lista_busqueda":lista_busqueda})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost", {"mensaje_busqueda": f'No hay reseñas que contengan en su título "{titulo}"'})
+      """
+      """   elif request.GET["libro"]:
+        libro=request.GET["libro"]
+        lista_busqueda=Post.objects.filter(libro__icontains=libro)
+        if len(lista_busqueda)!=0:
+            return render(request, "Blog/resultadosBusquedaPost", {"lista_busqueda":lista_busqueda})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost", {"mensaje_busqueda": f'El libro"{libro}" aún no tiene reseñas'})
+      else:
+        return render(request, "Blog/resultadosBusquedaPost", {"mensaje_busqueda": "Error. Por favor, verifica los datos ingresados"})
+      """
+#Sin probar buscarPost
 #--------------Categorías------------------------------------------------------------
 
 def crearCategoria(request):

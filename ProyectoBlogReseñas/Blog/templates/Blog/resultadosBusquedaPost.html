@@ -2,10 +2,21 @@
 
 {% load static %}
 
-{% block titulopagina %} Tinder Libros {% endblock %}
+{% block titulopagina %} Buscar una reseña: {% endblock %}
 
 {% block cuerpodelapagina %}
 
-<h2> {{ mensaje }} </h2>
+<h2> Resultados de la búsqueda: </h2>
 
+
+{% if mensaje_busqueda %}
+  <h3> {{ mensaje_busqueda }}</h3>
+{% else %}
+  {% for posteo in lista_busqueda %}
+    <li> {{ posteo.titulo }} </li>
+
+  {% endfor %}
+{% endif %}
 {% endblock %}
+
+#Falta mostrarlos lindos como en pages

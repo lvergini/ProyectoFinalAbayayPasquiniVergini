@@ -2,10 +2,17 @@
 
 {% load static %}
 
-{% block titulopagina %} Tinder Libros {% endblock %}
+{% block titulopagina %} Buscar una reseña: {% endblock %}
 
 {% block cuerpodelapagina %}
 
-<h2> {{ mensaje }} </h2>
+<h2> Buscar una reseña: </h2>
 
+<form action="{% url 'buscarPost' %}" method="GET"> {% csrf_token %}
+
+    <p> Búsqueda por título o por libro: <input type="text", name="titulo", id="titulo"></p>
+
+    <input type="submit", value="Buscar">
+
+</form>
 {% endblock %}
