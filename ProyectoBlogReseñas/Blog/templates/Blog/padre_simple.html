@@ -58,7 +58,7 @@
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Reseñas</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'ListaPosts' %}">Lista de reseñas </a></li>
-                <li><a class="dropdown-item" href="#">Buscar una reseña</a></li>
+                <li><a class="dropdown-item" href="{% url 'BusquedaPost' %}">Buscar una reseña</a></li>
                 {% if request.user.is_authenticated %}
                 <li><a class="dropdown-item" href="{% url 'CrearPost' %}">Crear una reseña</a></li>
                 {% endif %}
