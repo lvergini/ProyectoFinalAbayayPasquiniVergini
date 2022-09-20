@@ -6,6 +6,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Blog.models import Post
 
+@login_required
+def messages(request):
+    if request.method=="POST":
+        form=EnvioMensaje(request.POST)
+        if form.is_valid(): 
+            _emisor = User.username
+            mensaje=Mensaje(emisor=request.user,
+                            receptor=form.cleaned_data["receptor"], 
+                            texto=form.cleaned_data["mensaje"])
+            mensaje.save()
+            return render(request, "accounts/messages.html", {"mensaje": f"valido"})
+    else:
+        form=EnvioMensaje()
+    return render(request, "accounts/messages.html", {"form":form})
+
 def signup(request):
     if request.method=="POST":
         form=UserRegisterForm(request.POST)

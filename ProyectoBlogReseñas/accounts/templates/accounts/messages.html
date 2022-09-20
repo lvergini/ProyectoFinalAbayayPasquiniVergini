@@ -1,0 +1,20 @@
+
+
+{% block cuerpodelapagina %}
+<h3> Nuevo mensaje </h3>
+
+<form action="" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+<h2>{{ mensaje }}</h2>
+
+{% endblock %}
