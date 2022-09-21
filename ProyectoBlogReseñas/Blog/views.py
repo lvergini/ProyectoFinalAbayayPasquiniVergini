@@ -7,7 +7,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from Libros.views import *
-
+from django.contrib.auth.models import User
+from accounts.models import Perfil
 #--------------Inicio y about------------------------------------------------------------
 
 def inicio(request):
@@ -116,6 +117,7 @@ def busquedaPost(request):
 
 
 def buscarPost(request): #para completar
+      
       if request.GET["libro"]:
         libro=request.GET["libro"]
         posts_de_libro=Post.objects.filter(libro__titulo__icontains=libro)
@@ -127,7 +129,16 @@ def buscarPost(request): #para completar
         else:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'No hay reseñas del libro "{libro}"'})
 
-      
+      elif request.GET["autor"]:
+        autor=request.GET["autor"]
+        posts_de_usuario=Post.objects.filter(autor=autor)
+        autores=Perfil.objects.filter(user=autor)
+        if len(autores)==0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{autor}" no coincide con un usuario registrado'})
+        elif len(posts_de_usuario)!=0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts_de_usuario":posts_de_usuario})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'El usuario "{autor}" aún no ha realizado reseñas'})
 
 #--------------Categorías------------------------------------------------------------
 

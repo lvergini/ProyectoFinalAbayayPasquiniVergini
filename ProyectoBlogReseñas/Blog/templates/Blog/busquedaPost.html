@@ -11,5 +11,6 @@
 <form action="{% url 'buscarPost' %}" method="GET"> {% csrf_token %}
 
     <p>Búsqueda por libro: <input type="text" name="libro", id="libro"> <input type="submit", value="Buscar"></p>
+    <p>Búsqueda por nombre de usuario: <input type="text" name="autor", id="autor"> <input type="submit", value="Buscar"></p>
 
 {% endblock %}
