@@ -6,6 +6,7 @@ from Libros.models import Libro
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from Libros.views import *
 
 #--------------Inicio y about------------------------------------------------------------
 
@@ -110,11 +111,23 @@ def editarPost(request, id):
             form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
             return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id})
 
-def busquedaPost(request):
-    return render(request, "Blog/busquedaPost.html")
+def busquedaPost(request): 
+      return render(request, "Blog/busquedaPost.html")
+
 
 def buscarPost(request): #para completar
-      pass
+      if request.GET["libro"]:
+        libro=request.GET["libro"]
+        posts_de_libro=Post.objects.filter(libro__titulo__icontains=libro)
+        libros=Libro.objects.filter(titulo__icontains=libro)
+        if len(libros)==0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{libro}" no pertenece a la base de datos'})
+        elif len(posts_de_libro)!=0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"libros":libros})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'No hay reseñas del libro "{libro}"'})
+
+      
 
 #--------------Categorías------------------------------------------------------------
 

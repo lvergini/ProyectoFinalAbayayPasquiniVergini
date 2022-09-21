@@ -1,0 +1,22 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Tinder Libros {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h2> Resultados de la búsqueda: </h2>
+
+{% for libro in libros %}
+ 
+<ul>
+    <li> <a href="{% url 'LibroVista' libro.id %}"> <em>{{ libro.titulo }}</em>, de {{ libro.autor.nombre }}  {{ libro.autor.apellido }}</a></h3></li>
+</ul>
+
+
+{% endfor %}
+
+{{ mensaje_busqueda }}
+
+{% endblock %}

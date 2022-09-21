@@ -1,0 +1,15 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Tinder Libros {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h2> Buscar un post: </h2>
+
+<form action="{% url 'buscarPost' %}" method="GET"> {% csrf_token %}
+
+    <p>Búsqueda por libro: <input type="text" name="libro", id="libro"> <input type="submit", value="Buscar"></p>
+
+{% endblock %}
