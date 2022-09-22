@@ -11,8 +11,8 @@ from Libros.views import *
 #--------------Inicio y about------------------------------------------------------------
 
 def inicio(request):
-
-      return render(request, "Blog/inicio.html", {"categorias": obtenerCategorias(request)})
+      posts=Post.objects.all()
+      return render(request, "Blog/inicio.html", {"categorias": obtenerCategorias(request),"posts": posts})
     
 def about(request):
       return render(request, "Blog/about.html", {"categorias": obtenerCategorias(request)})

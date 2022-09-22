@@ -12,6 +12,7 @@
         <li> <strong>ISBN</strong>: {{ libro.isbn }}</li>
         <li> <strong>Fecha de publicación</strong>: {{ libro.fecha_publicacion }}</li>
         <li> <strong>Editorial</strong> : {{ libro.editorial }}</li>
+        <img src="/media/{{libro.imagen}}">
     </ul>
 
     {% if libro_posts %}
