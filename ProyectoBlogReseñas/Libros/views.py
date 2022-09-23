@@ -106,7 +106,7 @@ def libroCrear(request):
                 libro.save()
             return render(request, "Blog/inicio.html", {"mensaje": f"Se creó el libro {titulo}"})
         else:
-            return render(request, "AppLibros/inicio.html", {"mensaje": "Error. Se ingresaron mal los datos"})
+            return render(request, "Blog/inicio.html", {"mensaje": "Error. Se ingresaron mal los datos"})
     
     else:
         miFormulario=LibroFormulario()
