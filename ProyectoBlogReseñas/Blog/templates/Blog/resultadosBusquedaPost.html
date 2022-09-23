@@ -7,6 +7,12 @@
 {% block cuerpodelapagina %}
 
 <h2> Resultados de la búsqueda: </h2>
+{% for post in posts %} 
+
+
+{{ post.titulo }}
+
+{% endfor %} 
 
 {% for libro in libros %}
  
@@ -16,6 +22,8 @@
 
 
 {% endfor %}
+
+
 
 {{ mensaje_busqueda }}
 

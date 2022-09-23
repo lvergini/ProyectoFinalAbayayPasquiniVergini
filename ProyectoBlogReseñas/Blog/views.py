@@ -116,17 +116,40 @@ def busquedaPost(request):
 
 
 def buscarPost(request): #para completar
+      if request.GET["autor"] and request.GET["libro"]:
+        autor=request.GET["autor"]
+        libro=request.GET["libro"]
+        autores=User.objects.filter(username=autor)
+        posts=Post.objects.filter(libro__titulo__icontains=libro, autor__username__icontains=autor)
+        if len(autores)==0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{autor}" no coincide con un usuario registrado'})
+        elif len(posts)!=0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts":posts})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{libro} no se encuentra en la base de datos, pruebe buscar otra reseña de {autor}'})
+      
       if request.GET["libro"]:
         libro=request.GET["libro"]
-        posts_de_libro=Post.objects.filter(libro__titulo__icontains=libro)
+        posts=Post.objects.filter(libro__titulo__icontains=libro)
         libros=Libro.objects.filter(titulo__icontains=libro)
         if len(libros)==0:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{libro}" no pertenece a la base de datos'})
-        elif len(posts_de_libro)!=0:
-            return render(request, "Blog/resultadosBusquedaPost.html", {"libros":libros})
+        elif len(posts)!=0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"libros":libros, "posts":posts})
         else:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'No hay reseñas del libro "{libro}"'})
 
+      elif request.GET["autor"]:
+        autor=request.GET["autor"]
+        posts=Post.objects.filter(autor__username__icontains=autor)
+        autores=User.objects.filter(username=autor)
+        if len(posts)!=0:
+            # posts=posts[0]
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts":posts, "posts":posts})
+        elif len(autores)==0:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{autor}" no coincide con un usuario registrado'})
+        else:
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'El usuario "{autor}" aún no ha realizado reseñas'})
       
 
 #--------------Categorías------------------------------------------------------------
