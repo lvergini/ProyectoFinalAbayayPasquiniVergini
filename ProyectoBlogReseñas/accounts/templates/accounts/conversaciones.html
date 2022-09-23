@@ -1,0 +1,19 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Conversaciones {% endblock %}
+
+{% block cuerpodelapagina %}
+
+{% for usuario in usuariosConLosQueHabla %}
+
+
+<h2> <a href="{% url 'VistaConversacion' usuario.username %}"> Conversación con {{ usuario.username }}</a>  </h2>
+
+<button>
+    
+</button> 
+{% endfor %}
+
+{% endblock %}

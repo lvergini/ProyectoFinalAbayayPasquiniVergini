@@ -26,7 +26,13 @@ class Mensaje(models.Model):
     leido = models.BooleanField
     fecha = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ["-fecha"]
+
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
         self.fecha = timezone.now()
         return super(Mensaje, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return f'{self.emisor.username} a {self.receptor.username}'

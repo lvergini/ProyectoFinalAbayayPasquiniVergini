@@ -5,14 +5,16 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Blog.models import Post
+import logging
+
 
 @login_required
-def messages(request):
+def mensajes(request):
     if request.method=="POST":
         form=EnvioMensaje(request.POST)
         if form.is_valid(): 
-            _emisor = User.username
-            mensaje=Mensaje(emisor=request.user,
+            emisor = User.objects.get(username=request.user)
+            mensaje=Mensaje(emisor=emisor,
                             receptor=form.cleaned_data["receptor"], 
                             texto=form.cleaned_data["mensaje"])
             mensaje.save()
@@ -20,6 +22,44 @@ def messages(request):
     else:
         form=EnvioMensaje()
     return render(request, "accounts/messages.html", {"form":form})
+
+@login_required
+def listaConversaciones(request):
+    #usuario=User.objects.filter(pk=pk)
+    mensajesMandados=Mensaje.objects.filter(emisor=request.user)
+    mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
+
+    usuariosConLosQueHabla=[]
+    for mensaje in mensajesMandados:
+        receptor=mensaje.receptor
+        if receptor not in usuariosConLosQueHabla:
+            usuariosConLosQueHabla.append(receptor) #hay que ver cómo hacer para que no añada si ya existe
+    for mensaje in mensajesRecibidos:
+        emisor=mensaje.emisor
+        if emisor not in usuariosConLosQueHabla:
+            usuariosConLosQueHabla.append(emisor)
+    return render(request, "accounts/conversaciones.html", {"usuariosConLosQueHabla": usuariosConLosQueHabla, "mensajesMandados": mensajesMandados, "mensajesRecibidos":mensajesRecibidos})
+
+@login_required
+def vistaConversacion(request, usu):
+    #usuario=request.user
+    logging.error('Esto fue un gran error')
+    usuarioContacto=User.objects.filter(username=usu)
+    mensajesConUsuario=[]
+    mensajesMandados=Mensaje.objects.filter(emisor=request.user)
+    for mensaje in mensajesMandados:
+        receptor=mensaje.receptor
+        if receptor==usuarioContacto:
+            mensajesConUsuario.append(mensaje)
+    mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
+    for mensaje in mensajesRecibidos:
+        emisor=mensaje.emisor
+        if emisor==usuarioContacto:
+            mensajesConUsuario.append(mensaje)
+
+    #mensajesRecibidos=Mensaje.objects.filter(receptor=request.user, emisor=usuarioContacto)
+    return render(request, "accounts/conversacion.html", {"usu":usu, "mensajesConUsuario":mensajesConUsuario} )
+
 
 def signup(request):
     if request.method=="POST":
