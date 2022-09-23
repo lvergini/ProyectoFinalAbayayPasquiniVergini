@@ -27,7 +27,7 @@ class Mensaje(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        ordering = ["-fecha"]
+        ordering = ["fecha"]
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''

@@ -14,51 +14,50 @@ def mensajes(request):
         form=EnvioMensaje(request.POST)
         if form.is_valid(): 
             emisor = User.objects.get(username=request.user)
+            receptor=form.cleaned_data["receptor"]
             mensaje=Mensaje(emisor=emisor,
-                            receptor=form.cleaned_data["receptor"], 
+                            receptor=receptor, 
                             texto=form.cleaned_data["mensaje"])
             mensaje.save()
-            return render(request, "accounts/messages.html", {"mensaje": f"valido"})
+            return render(request, "accounts/messages.html", {"mensaje": f"Mensaje enviado correctamente a {receptor}"})
     else:
         form=EnvioMensaje()
     return render(request, "accounts/messages.html", {"form":form})
 
 @login_required
 def listaConversaciones(request):
-    #usuario=User.objects.filter(pk=pk)
     mensajesMandados=Mensaje.objects.filter(emisor=request.user)
     mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
 
-    usuariosConLosQueHabla=[]
+    contactosMensaje=[]
     for mensaje in mensajesMandados:
         receptor=mensaje.receptor
-        if receptor not in usuariosConLosQueHabla:
-            usuariosConLosQueHabla.append(receptor) #hay que ver cómo hacer para que no añada si ya existe
+        if receptor not in contactosMensaje:
+            contactosMensaje.append(receptor) #hay que ver cómo hacer para que no añada si ya existe
     for mensaje in mensajesRecibidos:
         emisor=mensaje.emisor
-        if emisor not in usuariosConLosQueHabla:
-            usuariosConLosQueHabla.append(emisor)
-    return render(request, "accounts/conversaciones.html", {"usuariosConLosQueHabla": usuariosConLosQueHabla, "mensajesMandados": mensajesMandados, "mensajesRecibidos":mensajesRecibidos})
+        if emisor not in contactosMensaje:
+            contactosMensaje.append(emisor)
+    return render(request, "accounts/conversaciones.html", {"contactosMensaje": contactosMensaje})
 
 @login_required
-def vistaConversacion(request, usu):
-    #usuario=request.user
-    logging.error('Esto fue un gran error')
-    usuarioContacto=User.objects.filter(username=usu)
+def conversacion(request, usu):
+    #logging.error('Esto fue un gran error')
+    contacto=User.objects.filter(username=usu)
+    contacto=contacto[0]
     mensajesConUsuario=[]
-    mensajesMandados=Mensaje.objects.filter(emisor=request.user)
+    usuario=request.user
+    mensajesMandados=Mensaje.objects.filter(emisor=usuario)
     for mensaje in mensajesMandados:
         receptor=mensaje.receptor
-        if receptor==usuarioContacto:
+        if receptor==contacto:
             mensajesConUsuario.append(mensaje)
-    mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
+    mensajesRecibidos=Mensaje.objects.filter(receptor=usuario)
     for mensaje in mensajesRecibidos:
         emisor=mensaje.emisor
-        if emisor==usuarioContacto:
+        if emisor==contacto:
             mensajesConUsuario.append(mensaje)
-
-    #mensajesRecibidos=Mensaje.objects.filter(receptor=request.user, emisor=usuarioContacto)
-    return render(request, "accounts/conversacion.html", {"usu":usu, "mensajesConUsuario":mensajesConUsuario} )
+    return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "mensajesConUsuario":mensajesConUsuario} )
 
 
 def signup(request):

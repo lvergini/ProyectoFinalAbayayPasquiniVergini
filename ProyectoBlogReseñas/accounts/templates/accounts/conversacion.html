@@ -6,39 +6,86 @@
 
 {% block cuerpodelapagina %}
 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<h2> Mensajes con {{ usu }} </h2>
+<div class="chat">
+    <div class="chat-header clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                    <img src="{{ contacto.perfil.imagen.url }}"  class="rounded-circle" alt="">
+                </a>
+                <div class="chat-about">
+                    <h4 class="m-b-0"> Mensajes con {{ usu }} </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chat-history">
 
-<br>
+{% if mensajesConUsuario %}
+
+
 {% for mensaje in mensajesConUsuario %}
 
 
-<h2>{{ mensaje.receptor }}</h2>
-<h2>{{ mensaje.texto }}</h2>
-<h2>{{ mensaje.leido }}</h2>
-<h2>{{ mensaje.fecha }}</h2>
+{% if mensaje.receptor == usuario %}
 
 
-{% if request.user == post.autor %}
-    <a href=""> Editar mensaje</a>  
-    <a href="¿"> Eliminar mensaje</a>  
+        <ul class="m-b-0">
+            <li class="clearfix">
+                <div class="message-data">
+                    <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }}</span>
+                    <img src="{{ mensaje.emisor.perfil.imagen.url }}" alt="avatar">
+                </div>
+                <div class="message my-message">{{ mensaje.texto }}</div>                                    
+            </li>                               
+        </ul>
+    </div>
+
+    {% endif %}
+
+
+{% if mensaje.emisor == usuario %}
+
+        <ul class="m-b-0">
+            <li class="clearfix">
+                <div class="message-data text-right">
+                    <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }} </span>
+                    <img src="{{ mensaje.emisor.perfil.imagen.url }}" alt="avatar">
+
+                </div>
+                <div class="message other-message float-right"> {{ mensaje.texto }}</div>
+            </li>
+        </ul>
+
+
 {% endif %}
 
-_____________________________________________________________
-
 
 {% endfor %}
 
-{% for mensaje in mensjesRecibidos %}
+</div>
+</div>
+<div class="chat-message clearfix">
+    <div class="input-group mb-0">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-send"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter text here...">                                    
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<h2>{{ mensaje.receptor }}</h2>
-<h2>{{ mensaje.texto }}</h2>
-<h2>{{ mensaje.leido }}</h2>
-<h2>{{ mensaje.fecha }}</h2>
-
-{% endfor %}
+{% else %}
 
 <h2> Todavía no hay ningún mensaje con  {{ usu }} </h2>
 
+{% endif %}
 
 {% endblock %}

@@ -6,14 +6,12 @@
 
 {% block cuerpodelapagina %}
 
-{% for usuario in usuariosConLosQueHabla %}
+{% for usuario in contactosMensaje %}
 
 
 <h2> <a href="{% url 'VistaConversacion' usuario.username %}"> Conversación con {{ usuario.username }}</a>  </h2>
 
-<button>
-    
-</button> 
+
 {% endfor %}
 
 {% endblock %}
