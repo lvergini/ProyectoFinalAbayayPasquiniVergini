@@ -186,6 +186,10 @@ def obtenerCategorias(request):
       categorias=Categoria.objects.all()
       return categorias
 
+def listaCategorias(request):
+    categorias=Categoria.objects.all()
+    return render(request, "Blog/todas_categorias.html", {"lista_cat":categorias})
+
 #--------------Comentarios------------------------------------------------------------
 
 @login_required

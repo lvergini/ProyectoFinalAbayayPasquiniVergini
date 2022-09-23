@@ -1,0 +1,26 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Tinder Libros {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<h1>Todas las categorías: </h1>
+
+
+
+{% for cat in lista_cat %}
+ 
+<p>{{ cat.nombre }} </p>
+    
+{% endfor %}
+
+{% if user.is_staff %}
+<a class="navbar-brand" href="{% url 'CrearCategoria' %}"> Crear una nueva categoría</a>
+{% endif %}
+
+  
+
+
+{% endblock %}

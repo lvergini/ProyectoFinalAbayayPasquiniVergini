@@ -52,6 +52,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" style="color:whitesmoke" href="#" data-toggle="dropdown" aria-expanded="false">Categorías</a>
               <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'listaCategorias' %}">Todas las categorías</a></li>
                 {% if request.user.is_authenticated %}
 
                 <li><a class="dropdown-item" href="{% url 'CrearCategoria' %}"> Crear nueva categoría </a></li>
