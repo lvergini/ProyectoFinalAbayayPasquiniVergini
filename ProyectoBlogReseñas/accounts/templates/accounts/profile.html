@@ -2,13 +2,14 @@
 
 {% load static %}
 
-{% block titulopagina %} Perfil de {{ usuario.username }} {% endblock %}
 
 {% block cuerpodelapagina %}
+
 <img src="{{ usuario.perfil.imagen.url }}" width="200" height="200" >
+
 <h1>{{usuario.first_name}} {{usuario.last_name}}</h1>
 <p>{{usuario.perfil.descripcion|safe}}</p>
-<a href="{{user.perfil.pagina_web}}" target="_blank">Página web de {{usuario.username}} </a>.
+<a href="{{ usuario.perfil.pagina_web }}" target="_blank">Página web de {{usuario.username}} </a>.
 
 {% if posts %}
 <hr>
