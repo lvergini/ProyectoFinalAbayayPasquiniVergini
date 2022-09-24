@@ -5,7 +5,111 @@
 
 {% block cuerpodelapagina %}
 
-<img src="{{ usuario.perfil.imagen.url }}" width="200" height="200" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-6">
+            <div class="mb-2">
+                <img class="w-100" src="{{ usuario.perfil.imagen.url }}" alt="">
+            </div>
+            <div class="mb-2 d-flex">
+
+                {% if usuario.first_name and usuario.last_name %}
+                <h4 class="font-weight-normal">{{ usuario.first_name }} {{ usuario.last_name }}</h4>
+                {% else %}
+                <h4 class="font-weight-normal">{{ usuario.username}}</h4>
+                {% endif %}
+
+                <div class="social d-flex ml-auto">
+                    <p class="pr-2 font-weight-normal">Seguime en:</p>
+                    <a href="#" class="text-muted mr-1">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-muted mr-1">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-muted mr-1">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-muted">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mb-2">
+                <ul class="list-unstyled">
+
+                    {% if request.user == usuario %}
+                    <li class="media">
+                        <a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
+                    </li>
+                    {% endif %}
+                    <br>
+                    <li class="media">
+                        <span class="w-25 text-black font-weight-normal">Profesión:</span>
+                        <label class="media-body">Design</label>
+                    </li>
+                    <li class="media">
+                        <span class="w-25 text-black font-weight-normal">País:</span>
+                        <label class="media-body">Design</label>
+                    </li>
+                    <li class="media">
+                        <span class="w-25 text-black font-weight-normal">Email: </span>
+                        <label class="media-body">{{ usuario.email }}</label>
+                    </li>
+                    <li class="media">
+                        <span class="w-25 text-black font-weight-normal">Página web: </span>
+                        <label class="media-body"> <a href="{{ usuario.perfil.pagina_web }}" target="_blank"> {{
+                                usuario.perfil.pagina_web }} </a></label>
+                    </li>
+                    <br>
+                    {% if not request.user == usuario %}
+                    <li class="media">
+                        <a href="{% url 'messagesUsu' usuario.username %}"> Enviar un mensaje a {{ usuario.username }}
+                        </a>
+                    </li>
+
+                    {% endif %}
+                    .
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-6 pl-xl-3">
+            <br><br>
+            <h5 class="font-weight-normal">Sobre {{ usuario.username }}</h5>
+            <br>
+            <p>{{usuario.perfil.descripcion|safe}}</p>
+            <hr>
+            {% if posts %}
+            <h5 class="font-weight-normal">Reseñas escritas por {{ usuario.username }}</h5>
+
+            {% for post in posts %}
+
+            <ul>
+                <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de <em>{{ post.libro.titulo
+                        }}</em>, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
+
+            </ul>
+            <hr>
+
+            {% endfor %}
+
+            {% else %}
+
+            <p>{{usuario.username}} todavía no escribió ninguna reseña. </p>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<img src="{{ usuario.perfil.imagen.url }}" width="200" height="200">
 
 <h1>{{usuario.first_name}} {{usuario.last_name}}</h1>
 <p>{{usuario.perfil.descripcion|safe}}</p>
@@ -18,7 +122,8 @@
 {% for post in posts %}
 
 <ul>
-    <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de  {{ post.libro.titulo }}, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
+    <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de {{ post.libro.titulo }}, de {{
+        post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
 
 </ul>
 <hr>
@@ -33,7 +138,7 @@
 
 {% if request.user == usuario %}
 <div class="links">
-<a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
+    <a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
 </div>
 {% endif %}
 
