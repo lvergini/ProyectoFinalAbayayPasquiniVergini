@@ -1,0 +1,89 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% block titulopagina %} Conversacion con: {{ usu }}  {% endblock %}
+
+{% block cuerpodelapagina %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="chat">
+    <div class="chat-header clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                    <img src="{{ contacto.perfil.imagen.url }}"  class="rounded-circle" alt="">
+                </a>
+                <div class="chat-about">
+                    <h4 class="m-b-0"> Mensajes con {{ usu }} </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chat-history">
+
+{% if mensajesConUsuario %}
+
+
+{% for mensaje in mensajesConUsuario %}
+
+
+{% if mensaje.receptor == usuario %}
+
+
+        <ul class="m-b-0">
+            <li class="clearfix">
+                <div class="message-data">
+                    <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }}</span>
+                </div>
+                <div class="message my-message">{{ mensaje.texto }}</div>                                    
+            </li>                               
+        </ul>
+    </div>
+
+    {% endif %}
+
+
+{% if mensaje.emisor == usuario %}
+
+        <ul class="m-b-0">
+            <li class="clearfix">
+                <div class="message-data text-right">
+                    <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }} </span>
+
+                </div>
+                <div class="message other-message float-right"> {{ mensaje.texto }}</div>
+            </li>
+        </ul>
+
+
+{% endif %}
+
+
+{% endfor %}
+
+</div>
+</div>
+<div class="chat-message clearfix">
+    <div class="input-group mb-0">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-send"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter text here...">                                    
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% else %}
+
+<h2> Todavía no hay ningún mensaje con  {{ usu }} </h2>
+
+{% endif %}
+
+{% endblock %}

@@ -11,5 +11,7 @@ urlpatterns = [
     path('messages/',views.mensajes,name='messages'),
     path('conversaciones/', views.listaConversaciones, name="ListaConversaciones"),
     path('conversacion/<str:usu>/', views.conversacion, name="Conversacion"),
+    path('messagesUsu/<str:usu>/', views.mensajeAUsuario, name="messagesUsu"),
+
 
 ]

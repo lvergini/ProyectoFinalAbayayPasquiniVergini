@@ -1,0 +1,31 @@
+
+
+{% block cuerpodelapagina %}
+
+<h2>{{ mensaje }}</h2>
+
+
+<form action="" method="POST"> {% csrf_token %} 
+
+    <h3> Mensaje a {{ receptor.username }} </h3>
+
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<button type="button" class="btn btn-info btn-rounded float-end">
+    <a href="{% url 'messagesUsu' usu %}"> Enviar un nuevo mensaje a {{ usu }} </a>
+</button>
+
+<button type="button" class="btn btn-info btn-rounded float-end">
+    <a href="{% url 'Conversacion' usu %}"> Volver a la conversación con {{ usu }} </a>
+</button>
+
+
+{% endblock %}

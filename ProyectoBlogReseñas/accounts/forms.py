@@ -12,8 +12,11 @@ class MyReceptorChoiceField(forms.ModelChoiceField):
 class EnvioMensaje(forms.Form):
       emisor = User
       receptor = MyReceptorChoiceField(queryset=User.objects.all())
-      mensaje = forms.CharField(max_length=500)
+      mensaje = forms.CharField(widget=forms.Textarea, max_length=500)
       
+class MensajeUsuario(forms.Form):
+    mensaje=forms.CharField(widget=forms.Textarea, max_length=500)
+
 
 class UserRegisterForm(UserCreationForm):
     # first_name=forms.CharField(label="Nombre", max_length=50, required=True)

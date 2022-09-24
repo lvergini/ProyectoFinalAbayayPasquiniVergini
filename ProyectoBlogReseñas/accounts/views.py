@@ -25,6 +25,24 @@ def mensajes(request):
     return render(request, "accounts/messages.html", {"form":form})
 
 @login_required
+def mensajeAUsuario(request, usu):
+    if request.method=="POST":
+        form=MensajeUsuario(request.POST)
+        if form.is_valid(): 
+            emisor = User.objects.get(username=request.user)
+            receptor=User.objects.filter(username=usu)
+            receptor=receptor[0]
+            mensaje=Mensaje(emisor=emisor,
+                            receptor=receptor, 
+                            texto=form.cleaned_data["mensaje"])
+            mensaje.save()
+            return render(request, "accounts/messagesUsu.html", {"usu": usu, "receptor":receptor, "mensaje": f"Mensaje enviado correctamente a {receptor}"})
+    else:
+        form=MensajeUsuario()
+    return render(request, "accounts/messagesUsu.html", {"usu":usu, "form":form})
+
+
+@login_required
 def listaConversaciones(request):
     mensajesMandados=Mensaje.objects.filter(emisor=request.user)
     mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
@@ -47,6 +65,7 @@ def conversacion(request, usu):
     contacto=contacto[0]
     mensajesConUsuario=[]
     usuario=request.user
+    #form=nuevoMensaje(request)
     mensajesMandados=Mensaje.objects.filter(emisor=usuario)
     for mensaje in mensajesMandados:
         receptor=mensaje.receptor
@@ -57,7 +76,8 @@ def conversacion(request, usu):
         emisor=mensaje.emisor
         if emisor==contacto:
             mensajesConUsuario.append(mensaje)
-    return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "mensajesConUsuario":mensajesConUsuario} )
+    return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "perfiles": listaPerfiles(request), "mensajesConUsuario":mensajesConUsuario} )
+
 
 
 def signup(request):
@@ -117,3 +137,7 @@ def editarPerfil(request):
         form_perfil = ProfileEditForm(instance=request.user.perfil)
 
     return render(request, 'accounts/editarPerfil.html',{'form_usuario': form_usuario, 'form_perfil': form_perfil})
+
+def listaPerfiles(request):
+    perfiles=Perfil.objects.all()
+    return perfiles
