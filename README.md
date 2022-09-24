@@ -48,3 +48,8 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
   <li>Trabajó en la funcionalidad de Mensajería</li>
   <li>Bug fixing general en CSS</li>
   <li>Bug fixing general sobre app de Libros, Blog y accounts.</li>
+  
+  <h3>Pruebas de Sistema</h3>
+  
+  Durante la fase de desarrollo del sistema se han ido documentando pruebas de sistema sobre distintos modulos. Las mismas han sido documentadas en el archivo: Planilla_Pruebas_de_Sistema_Coderhouse.xlsx subido a ésta plataforma.
+  
