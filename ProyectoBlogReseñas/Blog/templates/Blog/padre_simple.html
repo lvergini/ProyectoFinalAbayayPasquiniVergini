@@ -101,11 +101,22 @@
             {% if not request.user.is_authenticated %}
               <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Iniciar Sesión</a>
               <a class="btn btn-sm btn-outline-secondary" href="{% url 'signup' %}">Registrarse</a>
-                {% else %}
-                <p style="margin-top:18px">Hola, {{ user.username }}</p>
-                <img src="{{ user.perfil.imagen.url }}" width="50" height="50" class="rounded-circle" alt="">
-                <a class="btn btn-sm btn-outline-secondary" href="{% url 'profile' request.user.pk %}">Ver perfil</a>
-                <a class="btn btn-sm btn-outline-secondary" href="{% url 'logout' %}">Cerrar Sesión</a>
+                
+            {% else %}
+            <p style="margin-top:18px">Hola, {{ user.username }}</p>
+
+                  <div class="nav-link dropdown-toggle">
+                    <a href="#" id="imageDropdown" data-toggle="dropdown">
+                      <img src="{{ user.perfil.imagen.url }}" width="50" height="50" class="rounded-circle" alt="">
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
+                      <li><a class="dropdown-item" href="{% url 'profile' request.user.pk %}">Ver perfil </a></li>
+                      <li><a class="dropdown-item" href="{% url 'editarPerfil' %}">Editar perfil </a></li>
+                      <li><a class="dropdown-item" href="{% url 'ListaConversaciones' %}">Mensajes </a></li>
+                      <li role="presentation" class="divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión </a></li>
+                    </ul>
+                  </div>
                 {% endif %}
           </div>
         </div>
