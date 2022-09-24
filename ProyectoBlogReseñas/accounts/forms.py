@@ -5,16 +5,15 @@ from .models import *
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 
-class MyAutorChoiceField(forms.ModelChoiceField):
+class MyReceptorChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.username
 
 class EnvioMensaje(forms.Form):
       emisor = User
-      receptor = MyAutorChoiceField(queryset=User.objects.all())
+      receptor = MyReceptorChoiceField(queryset=User.objects.all())
       mensaje = forms.CharField(max_length=500)
       
-
 
 class UserRegisterForm(UserCreationForm):
     # first_name=forms.CharField(label="Nombre", max_length=50, required=True)

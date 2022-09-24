@@ -37,7 +37,6 @@
             <li class="clearfix">
                 <div class="message-data">
                     <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }}</span>
-                    <img src="{{ mensaje.emisor.perfil.imagen.url }}" alt="avatar">
                 </div>
                 <div class="message my-message">{{ mensaje.texto }}</div>                                    
             </li>                               
@@ -53,7 +52,6 @@
             <li class="clearfix">
                 <div class="message-data text-right">
                     <span class="message-data-time"> {{ mensaje.emisor }} - {{ mensaje.fecha }} </span>
-                    <img src="{{ mensaje.emisor.perfil.imagen.url }}" alt="avatar">
 
                 </div>
                 <div class="message other-message float-right"> {{ mensaje.texto }}</div>

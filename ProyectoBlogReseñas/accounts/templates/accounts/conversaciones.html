@@ -9,7 +9,7 @@
 {% for usuario in contactosMensaje %}
 
 
-<h2> <a href="{% url 'VistaConversacion' usuario.username %}"> Conversación con {{ usuario.username }}</a>  </h2>
+<h2> <a href="{% url 'Conversacion' usuario.username %}"> Conversación con {{ usuario.username }}</a>  </h2>
 
 
 {% endfor %}

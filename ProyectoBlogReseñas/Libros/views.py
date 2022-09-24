@@ -168,6 +168,6 @@ def libroVista(request, id):
     if len(libro_posts)!=0:
         return render(request, "libros/libroVista.html",  {"id":id, "libro":libro, "libro_posts":libro_posts})
     else:
-        return render(request, "libros/libroVista.html",  {"id":id})
+        return render(request, "libros/libroVista.html",  {"id":id, "libro":libro})
 
 
