@@ -77,6 +77,8 @@ def conversacion(request, usu):
         emisor=mensaje.emisor
         if emisor==contacto:
             mensajesConUsuario.append(mensaje)
+    mensajesConUsuario= sorted(mensajesConUsuario, key=lambda mensaje: mensaje.fecha)
+
     return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "perfiles": perfiles, "mensajesConUsuario":mensajesConUsuario} )
 
   
