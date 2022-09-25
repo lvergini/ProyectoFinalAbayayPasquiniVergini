@@ -71,7 +71,7 @@
                     </li>
 
                     {% endif %}
-                    .
+                    
 
                 </ul>
             </div>
@@ -106,41 +106,6 @@
     </div>
 </div>
 </div>
-
-
-
-<img src="{{ usuario.perfil.imagen.url }}" width="200" height="200">
-
-<h1>{{usuario.first_name}} {{usuario.last_name}}</h1>
-<p>{{usuario.perfil.descripcion|safe}}</p>
-<a href="{{ usuario.perfil.pagina_web }}" target="_blank">Página web de {{usuario.username}} </a>.
-
-{% if posts %}
-<hr>
-<h2> Reseñas escritas por {{usuario.username}}</h2>
-
-{% for post in posts %}
-
-<ul>
-    <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de {{ post.libro.titulo }}, de {{
-        post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
-
-</ul>
-<hr>
-
-{% endfor %}
-
-{% else %}
-
-<p>{{usuario.username}} todavía no escribió ninguna reseña. </p>
-
-{% endif %}
-
-{% if request.user == usuario %}
-<div class="links">
-    <a href="{% url 'editarPerfil' %}" class="btn btn-sm btn-primary">Editar Perfil</a>
-</div>
-{% endif %}
 
 
 

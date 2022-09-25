@@ -12,7 +12,7 @@
 
 {% for cat in lista_cat %}
  
-<li><a href="{% url 'CategoriaPosts' cat.id %}"> {{ cat.nombre }}</a>   </li>
+<li><a href="{% url 'CategoriaPosts' cat.nombre %}"> {{ cat.nombre }}</a>   </li>
     
 {% endfor %}
 
