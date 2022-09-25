@@ -41,9 +41,12 @@
   
         <div class="col-md-6 col-lg-7 col-xl-8">
 
+{% if contacto == usuario %}
+
+<h2> Tu página para chatear con otros usuarios </h2>
 
           
-{% if mensajesConUsuario %}
+{% elif mensajesConUsuario %}
 
 <h2> Mensajes con  <a href="{% url 'profile' contacto.id %}">{{ usu }}</a></h2>
 
@@ -91,15 +94,23 @@
             </li>
             {% endif %}
             {% endfor %}
-            {% else %}
 
-            <h2> Todavía no hay ningún mensaje con   <a href="{% url 'profile' contacto.id %}">{{ usu }}</a></h2>
-
-            {% endif %}
             <br>
             <button type="button" class="btn btn-light">
               <a href="{% url 'messagesUsu' usu %}"> Enviar mensaje a {{ usu }} </a>
             </button>
+
+            {% else %}
+
+            <h2> Todavía no hay ningún mensaje con   <a href="{% url 'profile' contacto.id %}">{{ usu }}</a></h2>
+
+            <br>
+            <button type="button" class="btn btn-light">
+              <a href="{% url 'messagesUsu' usu %}"> Enviar mensaje a {{ usu }} </a>
+            </button>
+
+            {% endif %}
+
 
 
           </ul>
