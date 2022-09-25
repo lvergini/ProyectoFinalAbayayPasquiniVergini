@@ -61,6 +61,7 @@ def listaConversaciones(request):
 @login_required
 def conversacion(request, usu):
     #logging.error('Esto fue un gran error')
+    perfiles=Perfil.objects.exclude(user=request.user)
     contacto=User.objects.filter(username=usu)
     contacto=contacto[0]
     mensajesConUsuario=[]
@@ -76,9 +77,9 @@ def conversacion(request, usu):
         emisor=mensaje.emisor
         if emisor==contacto:
             mensajesConUsuario.append(mensaje)
-    return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "perfiles": listaPerfiles(request), "mensajesConUsuario":mensajesConUsuario} )
+    return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "perfiles": perfiles, "mensajesConUsuario":mensajesConUsuario} )
 
-
+  
 
 def signup(request):
     if request.method=="POST":

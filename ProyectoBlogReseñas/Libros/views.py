@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from Blog.models import Post
 
-@login_required
+@staff_member_required
 def autorCrear(request):
     if request.method=="POST":
         miFormulario=AutorFormulario(request.POST)
@@ -64,7 +64,7 @@ def editarAutor(request, id):
         form=AutorFormulario(initial={"nombre":autor.nombre, "apellido":autor.apellido})
         return render(request, "libros/editarAutor.html", {"formulario":form, "nombre_autor":autor.nombre, "id":autor.id})
 
-@login_required
+@staff_member_required
 def editorialCrear(request):
     if request.method=="POST":
         miFormulario=EditorialFormulario(request.POST)
