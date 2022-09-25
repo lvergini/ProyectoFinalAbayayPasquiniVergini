@@ -1,8 +1,8 @@
 {% extends "Blog/padre_simple.html" %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
-{% block titulopagina %} Crear una categoría {% endblock %}
 
 {% block cuerpodelapagina %}
 
@@ -14,13 +14,12 @@
 
 <h2>{{ mensaje }}</h2>
 
-<h3> Ingrese otra categoría: </h3>
+<h3> Ingrese otra categoría que va a crear: </h3>
 <form action="" method="POST"> {% csrf_token %}
-
 
     <table>
 
-        {{ form.as_table }}
+        {{ form|crispy }}
 
     </table>
 

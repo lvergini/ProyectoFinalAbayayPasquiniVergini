@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block titulopagina %} Edita tu post {% endblock %}
+{% load crispy_forms_tags %}
 
 {% block cuerpodelapagina %}
 
@@ -18,7 +18,7 @@
 
     <table>
 
-        {{ formulario.as_table }}
+        {{ formulario|crispy }}
 
     </table>
 
