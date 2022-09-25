@@ -126,12 +126,13 @@ def editarPerfil(request):
     if request.method =="POST":
         form_usuario = UserEditForm(request.POST, instance=request.user)
         form_perfil = ProfileEditForm(request.POST, request.FILES, instance=request.user.perfil)
+        usuario= request.user
         if form_usuario and form_perfil:
             form_usuario.save()
             form_perfil.save()
             user=request.user
             pk=user.pk
-            return render(request, "accounts/profile.html", {"pk":pk})
+            return render(request, "accounts/profile.html", {"pk":pk, "usuario": usuario})
     else:
         form_usuario = UserEditForm(instance=request.user)
         form_perfil = ProfileEditForm(instance=request.user.perfil)

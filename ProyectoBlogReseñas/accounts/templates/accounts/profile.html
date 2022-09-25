@@ -46,22 +46,28 @@
                     </li>
                     {% endif %}
                     <br>
+                    {% if usuario.perfil.profesion %}
                     <li class="media">
                         <span class="w-25 text-black font-weight-normal">Profesión:</span>
                         <label class="media-body">Design</label>
                     </li>
+                    {% endif %}
+                    {% if usuario.perfil.pais %}
                     <li class="media">
                         <span class="w-25 text-black font-weight-normal">País:</span>
                         <label class="media-body">Design</label>
                     </li>
+                    {% endif %}
                     <li class="media">
                         <span class="w-25 text-black font-weight-normal">Email: </span>
                         <label class="media-body">{{ usuario.email }}</label>
                     </li>
+                    {% if usuario.perfil.pagina_web %}
                     <li class="media">
                         <span class="w-25 text-black font-weight-normal">Página web: </span>
-                        <label class="media-body"> <a href="{{ usuario.perfil.pagina_web }}" target="_blank"> {{
-                                usuario.perfil.pagina_web }} </a></label>
+                        <label class="media-body"> <a href="{{ usuario.perfil.pagina_web }}" target="_blank"> Página web de {{ usuario.username }} </a></label>
+                    {% endif %}
+                            
                     </li>
                     <br>
                     {% if not request.user == usuario %}
@@ -88,8 +94,7 @@
             {% for post in posts %}
 
             <ul>
-                <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de <em>{{ post.libro.titulo
-                        }}</em>, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
+                <li><a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a>. Reseña de <em>{{ post.libro.titulo }}</em>, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </li>
 
             </ul>
             <hr>

@@ -27,7 +27,7 @@
                       <img src="{{ perfil.imagen.url }}" alt="avatar"
                         class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
                       <div class="pt-1">
-                        <p class="fw-bold mb-0"> {{ perfil.user.username }}</p>
+                        <p class="fw-bold mb-0"> <a href="{% url 'profile' perfil.user.id %}">{{ perfil.user.username }}</a></p>
                       </div>
                     </div>
                   </a>

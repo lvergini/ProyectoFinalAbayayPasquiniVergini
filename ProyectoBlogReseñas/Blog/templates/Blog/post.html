@@ -19,18 +19,23 @@
 {% endif %}
 <hr>
 
-<h5>Título del libro: <em> {{ post.libro.titulo }} </em> </h5>
-<h5>Autor: {{ post.libro.autor }} </h5>
-<h5>Editorial: {{ post.libro.editorial }} </h5>
-<h5>Año: {{ post.libro.fecha_publicacion}} </h5>
-<h5>ISBN: {{ post.libro.isbn }} </h5>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h5>Título del libro: <em> {{ post.libro.titulo }} </em> </h5>
+        <h5>Autor: {{ post.libro.autor }} </h5>
+        <h5>Editorial: {{ post.libro.editorial }} </h5>
+        <h5>Año: {{ post.libro.fecha_publicacion}} </h5>
+        <h5>ISBN: {{ post.libro.isbn }} </h5>
+      </div>
+      <div class="col">
+        {% if post.libro.imagen %}
+        <img  src="{{ post.libro.imagen.url }}" width="200" height="200" alt="Tapa de {{post.libro.autor}}">
+        
+        {% endif %}      </div>
+    </div>
 
 
-
-{% if post.libro.imagen %}
-<img  src="{{ post.libro.imagen.url }}" width="200" height="200" alt="Tapa de {{post.libro.autor}}">
-
-{% endif %}
 
 <hr>
 
@@ -78,60 +83,78 @@
 
 <hr>
 
-<h3>Comentarios</h3>
 
-{% if user.is_authenticated %}
 
-<a href="{% url 'CrearComentario' post.pk  %}">Agregar comentario</a>
+<section style="background-color: #626060;">
+    <div class="container my-5 py-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="card text-dark">
+            <div class="card-body p-4">
+              <h4 class="mb-0">Comentarios</h4>
+              <br>
 
-{% else %}
-<p> Debés iniciar sesión para añadir un cometnario.  </p>
-{% endif %}
+              {% if user.is_authenticated %}
 
-{% if comentarios %}
+              <a href="{% url 'CrearComentario' post.pk  %}">Agregar comentario</a>
+              <hr>
 
-{% for comentario in comentarios %}
+              {% else %}
+              <p> Debés iniciar sesión para añadir un comentario.  </p>
+              <br>
 
-<hr>
+              {% endif %}
 
-<div data-gb-custom-block data-tag="for"></div>
 
-    <div class="comment">
-        <div class="date">{{ comentario.fecha_comentario }}</div>
-        <strong>{{ comentario.autor }}</strong>
-        <p>{{ comentario.comentario|linebreaks }}</p>
+
+
+              {% if comentarios %}
+
+              {% for comentario in comentarios %}
+
+
+              <div class="d-flex flex-start">
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="{{ comentario.autor.perfil.imagen.url }}" alt="avatar" width="60"
+                  height="60" />
+                <div>
+                  <h6 class="fw-bold mb-1">{{ comentario.autor }}</h6>
+                  <div class="d-flex align-items-center mb-3">
+                    <p class="mb-0">
+                        {{ comentario.fecha_comentario }}
+                    </p>
+
+                  </div>
+                  <p class="mb-0">
+                    {{ comentario.comentario|linebreaks }}
+
+                  </p>
+                  {% if request.user == comentario.autor %}
+
+                  <div class="links">
+                  <a href="{% url 'EliminarComentario' comentario.id %}"> Eliminar comentario </a>
+              </div>
+                            
+              <br>
+              {% endif %}
+
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-0" />
+
+            {% endfor %}
+
+
+            {% else %}
+            <p> Todavía no hay comentarios en esta reseña. </p>
+            
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
-
-<div data-gb-custom-block data-tag="empty">
-
-    {% if request.user == comentario.autor %}
-
-    <div class="links">
-    <a href="{% url 'EliminarComentario' comentario.id %}"> Eliminar comentario </a>
-</div>
-
-</div>
-
-<hr>
-
-
-{% endif %}
-
-{% endfor %}
-
-
-{% else %}
-<p> Todavía no hay comentarios en esta reseña. </p>
-
-{% endif %}
-
-{% if user.is_authenticated %}
-
-<a href="{% url 'CrearComentario' post.pk  %}">Agregar comentario</a>
-
-{% else %}
-<p> Debés iniciar sesión para añadir un cometnario.  </p>
-{% endif %}
-
+  </section>
 
 {% endblock %}
