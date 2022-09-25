@@ -23,13 +23,11 @@
 
 </form>
 
-<button type="button" class="btn btn-info btn-rounded float-end">
-    <a href="{% url 'messagesUsu' usu %}"> Enviar un nuevo mensaje a {{ usu }} </a>
+<br>
+<button type="button" class="btn btn-light">
+  <a href="{% url 'Conversacion' usu %}"> Volver a la conversación con {{ usu }} </a>
 </button>
 
-<button type="button" class="btn btn-info btn-rounded float-end">
-    <a href="{% url 'Conversacion' usu %}"> Volver a la conversación con {{ usu }} </a>
-</button>
 
 
 {% endblock %}
