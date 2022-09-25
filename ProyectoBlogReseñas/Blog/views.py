@@ -76,7 +76,7 @@ def postVista(request, pk):
 #Para mostrar todas las publicaciones
 def listaPosts(request):
       posts=Post.objects.all()
-      paginator = Paginator(posts, 3)
+      paginator = Paginator(posts, 4)
       pagina = request.GET.get('pagina')
       pagina_obj = paginator.get_page(pagina)
       return render(request, "Blog/pages.html", {"posts": posts, 'pagina_obj': pagina_obj, "categorias": obtenerCategorias(request)})
