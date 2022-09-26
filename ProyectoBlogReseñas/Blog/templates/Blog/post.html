@@ -15,7 +15,7 @@
 <h4>Reseña creada por: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </h4>
 
 {% if post.categoria %}
-<p> Categoría: <a href="{% url 'CategoriaPosts' post.categoria|slugify %}"> {{ post.categoria }}</a> </p> 
+<p> Categoría: <a href="{% url 'CategoriaPosts' post.categoria.id %}"> {{ post.categoria }}</a> </p> 
 {% endif %}
 <hr>
 

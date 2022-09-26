@@ -19,7 +19,7 @@
       <p class="lead my-3"> Reseña de <em>{{ post.libro.titulo }}</em>, de {{ post.libro.autor.nombre }} {{ post.libro.autor.apellido }} </p>
       <p class="lead my-3"> Escrita por <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </p>
       {% if post.categoria %}
-      <p class="lead my-3"> Categoría: <a href="{% url 'CategoriaPosts' post.categoria|slugify %}"> {{ post.categoria }}</a></p>
+      <p class="lead my-3"> Categoría: <a href="{% url 'CategoriaPosts' post.categoria.id %}"> {{ post.categoria }}</a></p>
       {% endif %}
       <p class="lead my-3"> {{ post.cuerpo|safe|slice:500 }} ... </p>
       <p class="lead mb-0"><a href="#" class="text-white font-weight-bold"> <a href="{% url 'PostVista' post.id %}"> Leer más</a></p>

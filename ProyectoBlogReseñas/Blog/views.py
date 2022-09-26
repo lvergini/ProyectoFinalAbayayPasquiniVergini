@@ -174,18 +174,19 @@ def crearCategoria(request):
         form=CrearCategoria()
         return render(request, "Blog/crearCategoria.html", {"form": form, "categorias": obtenerCategorias(request)})
 
-def categoriaPosts(request, cat):
-      categoria=Categoria.objects.filter(nombre=cat.replace('-', ' '))
+def categoriaPosts(request, pk):
+      categoria=Categoria.objects.filter(id=pk)
       if len(categoria)!=0:
-            categoria_posts=Post.objects.filter(categoria__nombre=cat.replace('-', ' '))
-            return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "categoria_posts":categoria_posts} )
+            categoria=categoria[0]
+            categoria_posts=Post.objects.filter(categoria__id=pk)
+            return render(request, "Blog/categoria.html", {"pk":pk, "categoria_posts":categoria_posts} )
       else:
-            return render(request, "Blog/categoria.html", {"cat":cat.title().replace('-', ' '), "mensaje": f"Todavía no fue creada la categoría {cat}"} )
+            return render(request, "Blog/categoria.html", {"pk":pk, "mensaje": f"Todavía no fue creada la categoría {categoria}"} )
 
 def obtenerCategorias(request):
       categorias=Categoria.objects.all()
       for categoria in categorias:
-            categoria=categoria.nombre.replace(' ', '-')
+           categoria=categoria.id
       return categorias
 
 def listaCategorias(request):

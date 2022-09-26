@@ -64,7 +64,7 @@
 
                 {% for categoria in categorias %}
 
-                <li><a class="dropdown-item" href="{% url 'CategoriaPosts' categoria|slugify %}"> {{ categoria }} </a></li>
+                <li><a class="dropdown-item" href="{% url 'CategoriaPosts' categoria.id %}"> {{ categoria }} </a></li>
 
                 {% endfor %}
 
