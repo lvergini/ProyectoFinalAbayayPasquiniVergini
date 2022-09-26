@@ -5,8 +5,6 @@ from Libros.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
-from simple_rest.auth.decorators import admin_required
-
 from Blog.models import Post
 
 @staff_member_required

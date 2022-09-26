@@ -10,6 +10,11 @@ class Perfil(models.Model):
     imagen = models.ImageField(default="default.jpg", upload_to="imagenesPerfil")
     descripcion = RichTextField(max_length=6000, blank=True)
     pagina_web=models.URLField()
+    profesion=models.CharField(max_length=60, null=True, blank=True)
+    pais=models.CharField(max_length=60, null=True, blank=True)
+    instagram=models.URLField(null=True, blank=True)
+    linkedin=models.URLField(null=True, blank=True)
+
 
     def __str__(self):
         return f'Perfil de {self.user.username}'

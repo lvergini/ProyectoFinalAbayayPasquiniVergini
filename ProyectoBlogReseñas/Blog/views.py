@@ -184,6 +184,8 @@ def categoriaPosts(request, cat):
 
 def obtenerCategorias(request):
       categorias=Categoria.objects.all()
+      for categoria in categorias:
+            categoria=categoria.nombre.replace(' ', '-')
       return categorias
 
 def listaCategorias(request):

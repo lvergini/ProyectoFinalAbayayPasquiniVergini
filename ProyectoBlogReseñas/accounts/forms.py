@@ -53,8 +53,12 @@ class ProfileEditForm(forms.ModelForm):
     imagen = forms.ImageField(required=False)
     descripcion = forms.CharField(widget=CKEditorWidget, max_length=6000, required=False)
     pagina_web=forms.URLField(required=False)
+    profesion=forms.CharField(max_length=60, required=False)
+    pais=forms.CharField(max_length=60, required=False)
+    instagram=forms.URLField(required=False)
+    linkedin=forms.URLField(required=False)
 
     class Meta:
         model = Perfil
-        fields = ['imagen', 'descripcion', 'pagina_web']
+        fields = ['imagen', 'descripcion', 'pagina_web', 'pais', 'profesion', 'instagram', 'linkedin']
         help_texts = {k:"" for k in fields}
