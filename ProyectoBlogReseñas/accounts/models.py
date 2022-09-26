@@ -8,7 +8,7 @@ from django.utils import timezone
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     imagen = models.ImageField(default="default.jpg", upload_to="imagenesPerfil")
-    descripcion = RichTextField(max_length=500, blank=True)
+    descripcion = RichTextField(max_length=6000, blank=True)
     pagina_web=models.URLField()
 
     def __str__(self):

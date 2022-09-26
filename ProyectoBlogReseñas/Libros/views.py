@@ -4,6 +4,9 @@ from Libros.forms import *
 from Libros.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+
+from simple_rest.auth.decorators import admin_required
+
 from Blog.models import Post
 
 @staff_member_required
@@ -86,7 +89,7 @@ def editorialCrear(request):
         miFormulario=EditorialFormulario()
         return render(request, "libros/editorialCrear.html", {"formulario": miFormulario})
 
-@login_required
+@staff_member_required
 def libroCrear(request):
     if request.method=="POST":
         miFormulario=LibroFormulario(request.POST, request.FILES)

@@ -19,11 +19,8 @@ class MensajeUsuario(forms.Form):
 
 
 class UserRegisterForm(UserCreationForm):
-    # first_name=forms.CharField(label="Nombre", max_length=50, required=True)
-    # last_name = forms.CharField(label="Apellido", max_length=50, required=True)
     email=forms.EmailField(required=True)
     username=forms.CharField(required=True)
-    #descripcion = forms.CharField(widget=forms.Textarea, max_length=500, required=False)
 
     password1: forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2: forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
@@ -43,8 +40,8 @@ class UserEditForm(forms.ModelForm):
     email = forms.EmailField(label="Modificar E-Mail")
     first_name = forms.CharField(label='Modificar Nombre')
     last_name = forms.CharField(label='Modificar Apellido')
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput, required=False)
+    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput, required=False)
     
     class Meta:
         model = User
@@ -54,7 +51,7 @@ class UserEditForm(forms.ModelForm):
 
 class ProfileEditForm(forms.ModelForm):
     imagen = forms.ImageField(required=False)
-    descripcion = forms.CharField(widget=CKEditorWidget, required=False, max_length=500)
+    descripcion = forms.CharField(widget=CKEditorWidget, max_length=6000, required=False)
     pagina_web=forms.URLField(required=False)
 
     class Meta:
