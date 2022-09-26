@@ -40,6 +40,9 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'ListaAutores' %}">Lista de autores</a></li>
                 <li><a class="dropdown-item" href="{% url 'BusquedaLibro' %}">Buscar un libro</a></li>
+                <li><a class="dropdown-item" href="{% url 'ListaEditoriales' %}">Lista de editoriales</a></li>
+
+
                 {% if request.user.is_authenticated %}
 
                 <li><a class="dropdown-item" href="{% url 'LibroCrear' %}">Cargar un libro</a></li>

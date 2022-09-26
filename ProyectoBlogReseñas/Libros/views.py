@@ -87,6 +87,35 @@ def editorialCrear(request):
         miFormulario=EditorialFormulario()
         return render(request, "libros/editorialCrear.html", {"formulario": miFormulario})
 
+def listaEditoriales(request):
+    editoriales=Editorial.objects.all()
+    return render(request, "libros/listaEditoriales.html", {"editoriales":editoriales})
+
+@staff_member_required
+def editarEditorial(request, id):
+    editorial=Editorial.objects.get(id=id)
+    if request.method=="POST":
+        form=EditorialFormulario(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            editorial.nombre=info["nombre"]
+            editorial.email=info["email"]
+            editorial.save()
+            editoriales=Editorial.objects.all()
+            return render(request, "Blog/inicio.html", {"mensaje": f"Se editó correctamente los datos de la editorial {editorial.nombre}"})
+    
+    else:
+        form=EditorialFormulario(initial={"nombre":editorial.nombre, "email":editorial.email})
+        return render(request, "libros/editarEditorial.html", {"formulario":form, "nombre_editorial":editorial.nombre, "id":editorial.id})
+
+#FALTA PROBAR
+@staff_member_required
+def eliminarEditorial(request, id):
+    editorial=Editorial.objects.get(id=id)
+    editorial.delete()
+    return render(request, "Blog/inicio.html", {"mensaje": f"Se eliminó la editorial {editorial}"})
+
+
 @staff_member_required
 def libroCrear(request):
     if request.method=="POST":
@@ -112,6 +141,38 @@ def libroCrear(request):
     else:
         miFormulario=LibroFormulario()
         return render(request, "libros/libroCrear.html", {"formulario": miFormulario})
+
+@staff_member_required
+def editarLibro(request, id):
+    libro=Libro.objects.get(id=id)
+ 
+    if request.method=="POST":
+        form=LibroFormulario(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            libro.titulo=info["titulo"]
+            libro.isbn=info["isbn"]
+            libro.fecha_publicacion=info["fecha_publicacion"]
+            libro.autor=Autor.objects.get(pk = info["autor"].id)
+            libro.editorial= Editorial.objects.get(pk = info["editorial"].id)
+            libro.imagen=info["imagen"]
+            libro.save()
+            libro_posts=Post.objects.filter(libro=libro)
+            if len(libro_posts)!=0:
+                return render(request, "libros/libroVista.html",  {"id":id, "libro":libro, "libro_posts":libro_posts})
+            else:
+                return render(request, "libros/libroVista.html",  {"id":id, "libro":libro})
+            #autores=Autor.objects.all()    
+    else:
+        form=LibroFormulario(initial={"titulo":libro.titulo, "isbn": libro.isbn, "fecha_publicacion":libro.fecha_publicacion, "autor":libro.autor, "editorial":libro.editorial, "imagen":libro.imagen})
+        return render(request, "libros/editarLibro.html", {"formulario":form, "titulo_libro":libro.titulo, "id":libro.id})
+
+#FALTA PROBAR
+@staff_member_required
+def eliminarLibro(request, id):
+    libro=Libro.objects.get(id=id)
+    libro.delete()
+    return render(request, "Blog/inicio.html", {"mensaje": f"Se eliminó el libro {libro}"})
 
 def busquedaLibro(request):
     return render(request, "libros/busquedaLibro.html")

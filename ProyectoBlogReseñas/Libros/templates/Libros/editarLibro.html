@@ -1,0 +1,27 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block cuerpodelapagina %}
+<h2>Está editando la información del libro {{ nombre_autor }} </h2>
+
+<form action="{% url 'EditarLibro' id %}" method="POST"> {% csrf_token %} 
+
+
+    <table>
+
+        {{ formulario|crispy }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+<br>
+
+
+
+{% endblock %}

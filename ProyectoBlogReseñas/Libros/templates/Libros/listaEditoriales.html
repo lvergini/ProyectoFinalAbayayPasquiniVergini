@@ -1,0 +1,42 @@
+{% extends "Blog/padre_simple.html" %}
+
+{% load static %}
+
+
+{% block cuerpodelapagina %}
+
+{% if mensaje %}
+<h2>{{ mensaje }}</h2>
+
+{% else %}
+
+
+<h1>Listado de editoriales: </h1>
+
+
+
+    {% for editorial in editoriales %}
+    <ul>
+    <li>{{ editorial.nombre }} -- Contacto:{{ editorial.email }} </a>   </li>
+    
+    {% if user.is_staff %}
+<button>
+    <a href="{% url 'EliminarEditorial' editorial.id %}"> Eliminar </a>
+</button>
+<button>
+    <a href="{% url 'EditarEditorial' editorial.id %}"> Editar </a>
+</button>
+
+{% endif %}
+
+
+</ul>
+
+    {% endfor %}
+   
+    {% endif %}
+
+    <a class="navbar-brand" href="{% url 'AutorCrear' %}">Agregar otro autor</a>´
+
+
+{% endblock %}
