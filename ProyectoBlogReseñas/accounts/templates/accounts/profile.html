@@ -21,15 +21,23 @@
                 <h4 class="font-weight-normal">{{ usuario.username }}</h4>
                 {% endif %}
 
+                {% if usuario.perfil.instagram or usuario.perfil.linkedin %}
                 <div class="social d-flex ml-auto">
                     <p class="pr-2 font-weight-normal">Seguime en:</p>
-                    <a href="{{ usuario.perfil.instagram.url }}" target="_blank" class="text-muted mr-1">
+                    {% if usuario.perfil.instagram %}
+
+                    <a href="{{ usuario.perfil.instagram }}" target="_blank" class="text-muted mr-1">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="{{ usuario.perfil.linkedin.url }}" target="_blank" >
+                    {% endif %}
+                    {% if usuario.perfil.linkedin %}
+                    <a href="{{ usuario.perfil.linkedin }}" target="_blank" >
                         <i class="fab fa-linkedin"></i>
                     </a>
+                    {% endif %}
                 </div>
+                {% endif %}
+
             </div>
             <div class="mb-2">
                 <ul class="list-unstyled">

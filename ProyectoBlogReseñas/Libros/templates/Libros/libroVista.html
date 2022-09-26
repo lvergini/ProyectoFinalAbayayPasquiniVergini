@@ -33,13 +33,14 @@
 
     {% endif %}
 
+    {% if request.user.is_authenticated %}
 
     <button>
         <a href="{% url 'CrearPost' %}"> Agregar reseña </a>
     </button>
 
+ {% endif %}
 
- 
     {% endblock %}
 
 

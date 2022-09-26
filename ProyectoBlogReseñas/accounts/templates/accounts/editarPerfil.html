@@ -4,10 +4,14 @@
 
 {% load crispy_forms_tags %}
 
-
-{% block titulopagina %} Editar perfil {% endblock %}
-
 {% block cuerpodelapagina %}
+
+{% if form.errors %}
+
+<p style="color:red;">Están mal los datos, revisar</p>
+
+{% else %}
+
 <h1>Edite sus datos</h1>
 <h2>{{ mensaje }}</h2>
 
@@ -22,5 +26,8 @@
     </div>
 
 </form>
+
+
+{% endif %}
 
 {% endblock %}
