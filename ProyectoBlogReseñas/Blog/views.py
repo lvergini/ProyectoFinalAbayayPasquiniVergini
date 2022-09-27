@@ -12,8 +12,8 @@ from Libros.views import *
 
 def inicio(request):
       posts=Post.objects.all()
-      categorias=Categoria.objects.all()
-      return render(request, "Blog/inicio.html", {"categorias": categorias,"posts": posts})
+      # categorias=Categoria.objects.all()
+      return render(request, "Blog/inicio.html", {"categorias": obtenerCategorias(request), "posts": posts})
     
 def about(request):
       return render(request, "Blog/about.html", {"categorias": obtenerCategorias(request)})
@@ -72,7 +72,7 @@ def postVista(request, pk):
 
             return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked, "categorias": obtenerCategorias(request)})
       else: 
-            return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo."}) 
+            return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo.", "categorias": obtenerCategorias(request)}) 
                 
 #Para mostrar todas las publicaciones
 def listaPosts(request):
@@ -180,9 +180,9 @@ def categoriaPosts(request, pk):
       if len(categoria)!=0:
             categoria=categoria[0]
             categoria_posts=Post.objects.filter(categoria__id=pk)
-            return render(request, "Blog/categoria.html", {"pk":pk, "categoria_posts":categoria_posts} )
+            return render(request, "Blog/categoria.html", {"pk":pk, "categoria_posts":categoria_posts, "categorias": obtenerCategorias(request)} )
       else:
-            return render(request, "Blog/categoria.html", {"pk":pk, "mensaje": f"Todavía no fue creada la categoría {categoria}"} )
+            return render(request, "Blog/categoria.html", {"pk":pk, "mensaje": f"Todavía no fue creada la categoría {categoria}", "categorias": obtenerCategorias(request)} )
 
 def obtenerCategorias(request):
       categorias=Categoria.objects.all()
@@ -226,22 +226,3 @@ def eliminarComentario(request, id):
           comentario.delete()
           return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
 
-# @login_required
-# def editarComentario(request, id):
-#       comentario=Comentario.objects.get(id=id)
-#       if request.method=="POST":
-#             form=CrearComentario(request.POST)
-#             if form.is_valid():
-#                   info=form.cleaned_data
-#                   comentario=info["nombre"]
-#                   comentario.save()
-#                   post=Post.objects.filter(comentarios=comentario.id)
-#                   pk= post[0].id
-#                   comentarios=Comentario.objects.all()
-#                   return HttpResponseRedirect(reverse("PostVista", args=[str(pk)]))
-#             else:
-#                   return render(request, "Blog/post.html", {"mensaje": "Error. Se ingresaron mal los datos"})
-    
-#       else:
-#             form=CrearComentario(initial={"comentario":comentario.comentario})
-#             return render(request, "Blog/editarComentario.html", {"form": form})

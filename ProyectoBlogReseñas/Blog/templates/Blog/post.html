@@ -22,7 +22,7 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <h5>Título del libro: <em> {{ post.libro.titulo }} </em> </h5>
+        <h5>Título del libro: <a href="{% url 'LibroVista' post.libro.id %}"> <em> {{ post.libro.titulo }} </em> </a> </h5>
         <h5>Autor: {{ post.libro.autor }} </h5>
         <h5>Editorial: {{ post.libro.editorial }} </h5>
         <h5>Año: {{ post.libro.fecha_publicacion}} </h5>
@@ -86,7 +86,7 @@
 
 
 <section style="background-color: #626060;">
-    <div class="container my-5 py-5">
+    <div class="container fluid">
       <div class="row d-flex justify-content-center">
         <div class="col-md-12 col-lg-10">
           <div class="card text-dark">
@@ -105,13 +105,9 @@
 
               {% endif %}
 
-
-
-
               {% if comentarios %}
 
               {% for comentario in comentarios %}
-
 
               <div class="d-flex flex-start">
                 <img class="rounded-circle shadow-1-strong me-3"
@@ -142,10 +138,10 @@
               </div>
             </div>
   
-            <hr class="my-0" />
 
             {% endfor %}
 
+            <hr class="my-0" />
 
             {% else %}
             <p> Todavía no hay comentarios en esta reseña. </p>

@@ -12,12 +12,10 @@ urlpatterns = [
     path('buscarPost/', views.buscarPost, name='buscarPost'),
     path('editarPost/<id>', views.editarPost, name="editarPost"),
     path('crearCategoria/', views.crearCategoria, name="CrearCategoria"),
-    #path('categoria/<str:cat>/', views.categoriaPosts, name="CategoriaPosts"),
     path('categoria/<int:pk>/', views.categoriaPosts, name="CategoriaPosts"),
     path('listaCategorias/', views.listaCategorias, name="listaCategorias"),
     path ('post/<int:pk>/crearComentario/', views.crearComentario, name="CrearComentario"),
     path('eliminarComentario/<id>', views.eliminarComentario, name='EliminarComentario'),
-    #path('editarComentario/<id>', views.editarComentario, name='EditarComentario'),
 
     path('like/<int:pk>', views.likeView, name="like_post"),
 

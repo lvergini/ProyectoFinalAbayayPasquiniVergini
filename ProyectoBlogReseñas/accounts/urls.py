@@ -8,8 +8,8 @@ urlpatterns = [
     path('profile/<int:pk>',views.profile,name="profile"),
     path('editarPerfil/', views.editarPerfil, name="editarPerfil"),
     path('logout/', LogoutView.as_view(template_name="accounts/logout.html"), name="logout"),
-    path('messages/',views.mensajes,name='messages'),
-    path('conversaciones/', views.listaConversaciones, name="ListaConversaciones"),
+    # path('messages/',views.mensajes,name='messages'),
+    # path('conversaciones/', views.listaConversaciones, name="ListaConversaciones"),
     path('conversacion/<str:usu>/', views.conversacion, name="Conversacion"),
     path('messagesUsu/<str:usu>/', views.mensajeAUsuario, name="messagesUsu"),
 
