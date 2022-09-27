@@ -6,17 +6,31 @@
 
 {% block cuerpodelapagina %}
 
+<style type="text/css">
+    h3 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:black;
+        background-color: gray  
+    }
+    h6 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:black;
+        background-color: gainsboro;
+        padding: 5px;
+    }
 
+</style>
 <ul>
-
-    <li> <h3> <strong>Nombre</strong>: {{ autor.nombre }}</h3></li>
-    <li> <h3> <strong>Apellido</strong>: {{ autor.apellido }}</h3></li>
-
+    <div class="imgAutor">
+        <img src="media\prueba3.png" width="100px" height="100px">
+    </div>
+    <h3> <strong>{{ autor.apellido }}</strong>, {{ autor.nombre }} </h3>
+    <h6>Libros de {{ autor.nombre }} {{ autor.apellido }}: </h3>
 </ul>
 
     {% if libros %}
 
-    <h3>Libros de {{ autor.nombre }} {{ autor.apellido }}: </h3>
+    
 
     {% for libro in libros %}
 
