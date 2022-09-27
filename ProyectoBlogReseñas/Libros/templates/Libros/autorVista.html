@@ -31,9 +31,9 @@
     <p>Todavía no hay ningún libro cargado del autor {{ autor.nombre}} {{ autor.apellido }}</p>
 
     {% endif %}
-
+    {% if user.is_staff %}
     <a href="{% url 'LibroCrear' %}"> Agregar libro</a>
-
+{% endif %} 
     {% endblock %}
 
 

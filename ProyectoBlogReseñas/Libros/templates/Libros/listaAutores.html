@@ -27,17 +27,16 @@
 <button>
     <a href="{% url 'EditarAutor' autor.id %}"> Editar </a>
 </button>
-
-{% endif %}
-
-
 </ul>
 
-    {% endfor %}
-   
     {% endif %}
 
+    {% endfor %}
+
+    {% if user.is_staff %}
     <a class="navbar-brand" href="{% url 'AutorCrear' %}">Agregar otro autor</a>´
+    {% endif %}
 
 
-{% endblock %}
+    {% endif %}
+    {% endblock %}

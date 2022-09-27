@@ -202,7 +202,7 @@ def buscarLibro(request):
         elif len(libros)!=0:
             return render(request, "libros/resultadoLibros.html", {"libros":libros})
         else:
-            return render(request, "libros/resultadoLibros.html", {"mensaje": f'No hay libros del autor "{autor}"'})
+            return render(request, "libros/resultadoLibros.html", {"mensajeLibro": f'No hay libros del autor "{autor}"'})
     
     elif request.GET["titulo"]:
         titulo=request.GET["titulo"]
@@ -210,9 +210,9 @@ def buscarLibro(request):
         if len(libros)!=0:
             return render(request, "libros/resultadoLibros.html", {"libros":libros})
         else:
-            return render(request, "libros/resultadoLibros.html", {"mensaje": f'No hay libros que contengan en su título "{titulo}"'})
+            return render(request, "libros/resultadoLibros.html", {"mensajeLibro": f'No hay libros que contengan en su título "{titulo}"'})
     else:
-        return render(request, "libros/busquedaLibro.html", {"mensaje": "¡No enviaste datos!"})
+        return render(request, "libros/busquedaLibro.html", {"mensajeLibro": "¡No enviaste datos!"})
 
 def autorVista(request, id):
     autor=Autor.objects.filter(id=id)

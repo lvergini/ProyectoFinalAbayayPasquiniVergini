@@ -33,10 +33,12 @@
 </ul>
 
     {% endfor %}
-   
+
+    {% if user.is_staff %}
+    <a class="navbar-brand" href="{% url 'EditorialCrear' %}">Agregar una editorial</a>´
     {% endif %}
 
-    <a class="navbar-brand" href="{% url 'AutorCrear' %}">Agregar otro autor</a>´
+    
 
-
+    {% endif %}
 {% endblock %}
