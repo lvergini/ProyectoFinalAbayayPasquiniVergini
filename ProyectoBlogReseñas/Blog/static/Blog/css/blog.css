@@ -205,5 +205,37 @@ img.thumbnail2 {
     flex-direction: column;
   }
 
+  .equalize-row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.equalize {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.thumbnail {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail .caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.thumbnail .thumbnail2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 
 
