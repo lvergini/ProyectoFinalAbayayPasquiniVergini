@@ -53,11 +53,12 @@
                 <li><a class="dropdown-item" href="{% url 'ListaEditoriales' %}">Lista de editoriales</a></li>
 
 
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
 
                 <li><a class="dropdown-item" href="{% url 'LibroCrear' %}">Cargar un libro</a></li>
                 <li><a class="dropdown-item" href="{% url 'AutorCrear' %}">Cargar un autor</a></li>
                 <li><a class="dropdown-item" href="{% url 'EditorialCrear' %}">Cargar una editorial</a></li>
+
                 {% endif %}
 
               </ul>
