@@ -17,7 +17,6 @@ urlpatterns = [
     path ('post/<int:pk>/crearComentario/', views.crearComentario, name="CrearComentario"),
     path('eliminarComentario/<id>', views.eliminarComentario, name='EliminarComentario'),
 
-    path('like/<int:pk>', views.likeView, name="like_post"),
-
+    path('like/<int:pk>', views.likeView, name="like_post")
 
 ]

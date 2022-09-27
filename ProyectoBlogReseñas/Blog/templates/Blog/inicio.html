@@ -1,25 +1,19 @@
-{% extends "Blog/padre_simple.html" %}
+{% extends "Blog/padre.html" %}
 
 {% load static %}
 
-{% block titulopagina %} Tinder Libros {% endblock %}
-
 {% block cuerpodelapagina %}
-<div class="inicioAu">
-  
+<div class="inicioAu ">
   <div class="textoInAu">
-    <div class="1Au">
+    <div class="textojumbo">
       <h1 class="titInAu"> Un espacio para compartir lecturas </h1>
-      <p class="textInAu"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed soluta magni accusamus ab natus officiis deserunt ducimus, quod exercitationem placeat quia, voluptates a praesentium at unde necessitatibus reiciendis sit?</p>
+      <p class="textInAu"> Queremos saber tu opinión acerca de los libros que leíste! Navegá nuestro sitio y compartamos pensamientos</p>
     </div>
-    <!-- <button class="botonInAu" src="{% url 'About' %}"> CONOCÉ MÁS ACERCA DE NOSOTROS </button> -->
-  </div>
-  <div class="imgInicio">
-    <img src="media\prueba2.png">
+    <a href="{% url 'About' %}" class="btn btn-primary" role="button">Acerca de nosotros</a>
   </div>
 </div>
 
-
+<h4> {{ mensaje }} </h4>
 <div class="row equalize-row">
   
 {% for i in posts %}
@@ -39,5 +33,5 @@
 
 </div>
 
-<h4> {{ mensaje }} </h4>
+
 {% endblock %}

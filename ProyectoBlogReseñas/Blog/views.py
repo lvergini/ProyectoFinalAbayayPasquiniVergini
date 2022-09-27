@@ -5,7 +5,7 @@ from .models import *
 from Libros.models import Libro
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 from Libros.views import *
 
 #--------------Inicio y about------------------------------------------------------------
@@ -65,11 +65,8 @@ def postVista(request, pk):
             liked=post.likes.filter(id=request.user.id)
             if len(liked)!=0:
                   liked=True
-            
             else:
                   liked=False
-            
-
             return render(request, "Blog/post.html", {"post":post, "comentarios":comentarios, "cantidad_likes":cantidad_likes, "liked":liked, "categorias": obtenerCategorias(request)})
       else: 
             return render (request, "Blog/inicio.html", {"mensaje": "No se ha encontrado ningún post. Pruebe buscar de nuevo.", "categorias": obtenerCategorias(request)}) 
@@ -83,18 +80,19 @@ def listaPosts(request):
       cantPags = "a" * postsPag.paginator.num_pages
       return render(request, "Blog/pages.html", {"posts": postsLista, 'postsPag': postsPag, "cantPags": cantPags,  "categorias": obtenerCategorias(request)})
 
-#YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
+
 @login_required
 def eliminarPost(request, id):
       posteo=Post.objects.get(id=id)
       posteo.delete()
       posts=Post.objects.all()
-      return render(request, "Blog/pages.html", {"posts": posts }) #Agregar mensaje de publi eliminada
+      return render(request, "Blog/pages.html", {"postsPag": posts }) 
 
       
 #Para modificar una publicación
 def editarPost(request, id):
       posteo=Post.objects.get(id=id)
+      posts=Post.objects.all()
       if request.method=="POST":
            form=CrearPost(request.POST)
            if form.is_valid():
@@ -105,19 +103,17 @@ def editarPost(request, id):
                   posteo.libro=Libro.objects.get(pk = info["libro"].id)
                   posteo.imagen=info["imagen"]
                   posteo.cuerpo=info["cuerpo"]
-                  posteo.save()
-                  posts=Post.objects.all()
-                  return render(request, "Blog/pages.html", {"posts": posts}) #Agregar mensaje de publi modificada
-                  #¿Agregar fecha de última modificación?
+                  posteo.save()    
+                  return render(request, "Blog/pages.html", {"postsPag": posts})
       else:
             form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
-            return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id})
+            return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id, "postsPag": posts})
 
 def busquedaPost(request): 
       return render(request, "Blog/busquedaPost.html")
 
 
-def buscarPost(request): #para completar
+def buscarPost(request): 
       if request.GET["autor"] and request.GET["libro"]:
         autor=request.GET["autor"]
         libro=request.GET["libro"]
