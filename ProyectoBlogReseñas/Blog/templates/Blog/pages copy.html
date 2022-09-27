@@ -10,7 +10,7 @@
 
 <hr>
 
-{% for post in postsPag %}
+{% for post in posts %}
 
 <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
@@ -40,23 +40,22 @@
 
 {% endfor %}
 
-<br> <br>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primera </a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
 
-{% if postsPag.has_previous %}
-<a href="?pagina=1">&laquo; Primera </a>   
-<a href="?pagina= {{ postsPag.previoius_page_number }}">&laquo; Anterior </a>   
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
 
-{% endif %}
-
-Pagina {{ postsPag.number }} de {{ postsPag.paginator.num_pages }}
-
-{% if postsPag.has_next %}
-<a href="?pagina= {{ postsPag.next_page_number }} "> Siguiente </a>   
-<a href="?pagina= {{ postsPag.paginator.num_pages }}"> Última &raquo;</a>   
-
-{% endif %}
-
-
-
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}
