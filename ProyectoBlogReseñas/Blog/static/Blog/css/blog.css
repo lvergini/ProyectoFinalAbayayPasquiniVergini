@@ -238,4 +238,68 @@ img.thumbnail2 {
   height: 100%;
 }
 
+/* About */
+
+/* .imgPersona{
+  background-image:  url(ProyectoFinalAbayayPasquiniVergini\ProyectoBlogReseñas\Blog\static\Blog\assets\img\prueba.jpg);
+} */
+.personas{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.nombreParticipante{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.textoPersona{
+  padding-left: 10%;
+}
+.sobreAU{
+  padding-bottom: 10px ;
+}
+
+/* Inicio que dirige al about */
+.inicioAu{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: rgba(153, 155, 173, 0.37);
+  margin-bottom: 20px;
+}
+
+.textoInAu{
+  /* margin-right: 60%; */
+  padding: 10px;
+}
+.botonInAu{
+  background: none;
+  color: #37474f;
+  border: 4px solid #37474f;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 19px 25px 17px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-family: Eina,sans-serif;
+    font-weight: 700;
+    letter-spacing: .07rem;
+    text-align: center;
+}
+button{
+  background: none;
+  color: #37474f;
+  border: 4px solid #193949;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 9px 15px 7px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: .07rem;
+    text-align: center;
+}
+
+
 
