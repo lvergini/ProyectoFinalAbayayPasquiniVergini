@@ -170,7 +170,11 @@ def editarLibro(request, id):
         form=LibroFormulario(initial={"titulo":libro.titulo, "isbn": libro.isbn, "fecha_publicacion":libro.fecha_publicacion, "autor":libro.autor, "editorial":libro.editorial, "imagen":libro.imagen})
         return render(request, "libros/editarLibro.html", {"formulario":form, "titulo_libro":libro.titulo, "id":libro.id})
 
-#FALTA PROBAR
+def listaLibros(request):
+    libros=Libro.objects.all()
+
+    return render(request, "libros/listaLibros.html", {"libros":libros})
+
 @staff_member_required
 def eliminarLibro(request, id):
     libro=Libro.objects.get(id=id)
