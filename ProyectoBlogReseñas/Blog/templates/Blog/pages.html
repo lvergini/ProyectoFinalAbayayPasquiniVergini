@@ -42,21 +42,36 @@
 
 <br> <br>
 
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+
+
 {% if postsPag.has_previous %}
-<a href="?pagina=1">&laquo; Primera </a>   
-<a href="?pagina= {{ postsPag.previoius_page_number }}">&laquo; Anterior </a>   
+<li class="page-item"><a class="page-link" href="?pagina=1">Primera</a></li>
+
+<li class="page-item"><a class="page-link" href="?pagina= {{ postsPag.previoius_page_number }}">Anterior</a></li>
 
 {% endif %}
 
-Pagina {{ postsPag.number }} de {{ postsPag.paginator.num_pages }}
+{% for pagina in cantPags %}
+<li class="page-item"><a class="page-link" href="?pagina= {{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+{% endfor %}
 
 {% if postsPag.has_next %}
-<a href="?pagina= {{ postsPag.next_page_number }} "> Siguiente </a>   
-<a href="?pagina= {{ postsPag.paginator.num_pages }}"> Última &raquo;</a>   
+<li class="page-item"><a class="page-link" href="?pagina= {{ postsPag.next_page_number }}">Siguiente</a></li>
+<li class="page-item"><a class="page-link" href="?pagina= {{ postsPag.paginator.num_pages }}">Última</a></li>
 
 {% endif %}
 
+</ul>
+</nav>
 
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled"> <a class="page-link" href="#"> Pagina {{ postsPag.number }} de {{ postsPag.paginator.num_pages }} </a></li>
 
+    </ul>
+</nav>
 
 {% endblock %}

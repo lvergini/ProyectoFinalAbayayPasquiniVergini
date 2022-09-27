@@ -76,11 +76,12 @@ def postVista(request, pk):
                 
 #Para mostrar todas las publicaciones
 def listaPosts(request):
-      posts_lista=Post.objects.all()
-      paginator = Paginator(posts_lista, 3)
+      postsLista=Post.objects.all()
+      paginator = Paginator(postsLista, 2)
       pagina = request.GET.get('pagina')
       postsPag = paginator.get_page(pagina)
-      return render(request, "Blog/pages.html", {"posts": posts_lista, 'postsPag': postsPag, "categorias": obtenerCategorias(request)})
+      cantPags = "a" * postsPag.paginator.num_pages
+      return render(request, "Blog/pages.html", {"posts": postsLista, 'postsPag': postsPag, "cantPags": cantPags,  "categorias": obtenerCategorias(request)})
 
 #YA RESTRINGÍ, falta agregar pag de confirm de eliminación - Elimiar publicación (Falta restringir la función sólo a la persona que lo creó)
 @login_required
