@@ -4,11 +4,13 @@
 
 {% block cuerpodelapagina %}
 
-<h1>Listado de libros: </h1>
+{% if librosNoReseñados %}
+
+<h1>Libros que no han sido reseñados: </h1>
 
 <ul>
 
-    {% for libro in libros %}
+    {% for libro in librosNoReseñados %}
 
     <li><h5> <a href="{% url 'LibroVista' libro.id %}"> {{ libro.titulo }}, de {{ libro.autor.nombre }} {{ libro.autor.apellido }} </a>    </h5></li>
 
@@ -26,6 +28,36 @@
     {% endif %}
 
     {% endfor %}
+    {% endif %}
+
+{% if librosReseñados %}
+
+<hr>
+
+<h1>Libros con reseñas: </h1>
+
+    {% for libro in librosReseñados %}
+
+    <li><h5> <a href="{% url 'LibroVista' libro.id %}"> {{ libro.titulo }}, de {{ libro.autor.nombre }} {{ libro.autor.apellido }} </a>    </h5></li>
+
+    <br>
+    
+    {% if user.is_staff %}
+<button>
+    <a href="{% url 'EliminarLibro' libro.id %}"> Eliminar </a>
+</button>
+<button>
+    <a href="{% url 'EditarLibro' libro.id %}"> Editar </a>
+</button>
+
+
+    {% endif %}
+
+    {% endfor %}
+
+    {% endif %}
+
+
 </ul>
     {% if user.is_staff %}
     <a class="navbar-brand" href="{% url 'LibroCrear' %}">Agregar otro libro</a>´

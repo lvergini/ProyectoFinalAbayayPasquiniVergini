@@ -172,8 +172,30 @@ def editarLibro(request, id):
 
 def listaLibros(request):
     libros=Libro.objects.all()
+    librosReseñados=[]
+    librosNoReseñados=[]
+    posts=Post.objects.all()
+    for post in posts:
+        libro=post.libro
+        if libro not in librosReseñados:
+            librosReseñados.append(libro)
+    for libro in libros:
+        if libro not in librosReseñados:
+            librosNoReseñados.append(libro)
+    return render(request, "libros/listaLibros.html", {"librosReseñados": librosReseñados, "librosNoReseñados":librosNoReseñados, "libros":libros})
 
-    return render(request, "libros/listaLibros.html", {"libros":libros})
+
+#     contactosMensaje=[]
+#     for mensaje in mensajesMandados:
+#         receptor=mensaje.receptor
+#         if receptor not in contactosMensaje:
+#             contactosMensaje.append(receptor) #hay que ver cómo hacer para que no añada si ya existe
+#     for mensaje in mensajesRecibidos:
+#         emisor=mensaje.emisor
+#         if emisor not in contactosMensaje:
+#             contactosMensaje.append(emisor)
+#     return render(request, "accounts/conversaciones.html", {"contactosMensaje": contactosMensaje})
+
 
 @staff_member_required
 def eliminarLibro(request, id):
