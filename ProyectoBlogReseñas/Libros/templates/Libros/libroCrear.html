@@ -18,7 +18,7 @@
 <h2>{{ mensaje }}</h2>
 
 <h3> Ingrese los datos de otro libro: </h3>
-<form action="" method="POST"> {% csrf_token %} 
+<form action="" method="POST"  enctype="multipart/form-data"> {% csrf_token %} 
 
 
     <table>
@@ -36,7 +36,7 @@
 {% else %}
 
 <h3> Ingrese los datos del libro que va a crear: </h3>
-<form action="" method="POST"> {% csrf_token %} 
+<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %} 
 
 
     <table>

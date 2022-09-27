@@ -127,7 +127,10 @@ def libroCrear(request):
             fecha_publicacion= info["fecha_publicacion"]
             autor= Autor.objects.get(pk = info["autor"].id)
             editorial= Editorial.objects.get(pk = info["editorial"].id)
-            imagen=info["imagen"]
+            imagen=info.get("imagen")
+            print("FILES")
+            print(request.FILES)
+            print(info)
             libro = Libro(titulo = titulo, isbn = isbn, fecha_publicacion = fecha_publicacion , autor= autor, editorial = editorial, imagen=imagen)
             libroEnBase=Libro.objects.filter(titulo=titulo, autor=autor)
             if len(libroEnBase)!=0:
