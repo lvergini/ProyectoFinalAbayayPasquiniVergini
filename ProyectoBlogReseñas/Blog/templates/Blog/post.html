@@ -1,8 +1,6 @@
-{% extends "Blog/padre_simple.html" %}
+{% extends "Blog/padre.html" %}
 
 {% load static %}
-
-{% block titulopagina %}  Reseña de <em> {{ post.libro.titulo }}</em>  {% endblock %}
 
 {% block cuerpodelapagina %}
 
@@ -43,7 +41,7 @@
 
 {% if request.user == post.autor %}
 <p><a href="{% url 'editarPost' post.id %}">Editar reseña </a> |
-    <a href="#">Eliminar reseña</a></p>
+    <a href="{% url 'eliminarPost' post.id %}">Eliminar reseña</a></p>
 
 {% endif %}
 
@@ -113,7 +111,7 @@
                 <img class="rounded-circle shadow-1-strong me-3"
                   src="{{ comentario.autor.perfil.imagen.url }}" alt="avatar" width="60"
                   height="60" />
-                <div>
+                <div style="padding-left:30px">
                   <h6 class="fw-bold mb-1">{{ comentario.autor }}</h6>
                   <div class="d-flex align-items-center mb-3">
                     <p class="mb-0">
@@ -136,11 +134,11 @@
 
                 </div>
               </div>
-            </div>
+          
   
 
             {% endfor %}
-
+          </div>
             <hr class="my-0" />
 
             {% else %}

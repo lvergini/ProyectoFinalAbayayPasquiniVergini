@@ -1,29 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from accounts.forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Blog.models import Post
-import logging
 from Blog.views import obtenerCategorias
+from django.urls import reverse
 
-
-# @login_required
-# def mensajes(request):
-#     if request.method=="POST":
-#         form=EnvioMensaje(request.POST)
-#         if form.is_valid(): 
-#             emisor = User.objects.get(username=request.user)
-#             receptor=form.cleaned_data["receptor"]
-#             mensaje=Mensaje(emisor=emisor,
-#                             receptor=receptor, 
-#                             texto=form.cleaned_data["mensaje"])
-#             mensaje.save()
-#             return render(request, "accounts/messages.html", {"mensaje": f"Mensaje enviado correctamente a {receptor}"})
-#     else:
-#         form=EnvioMensaje()
-#     return render(request, "accounts/messages.html", {"form":form})
 
 @login_required
 def mensajeAUsuario(request, usu):
@@ -43,25 +27,8 @@ def mensajeAUsuario(request, usu):
     return render(request, "accounts/messagesUsu.html", {"usu":usu, "form":form})
 #SI ELIMINAMOS EL MENSAJE GENERAL, CAAMBIEMOS LA URL DE ESTE A MESSAGES
 
-# @login_required
-# def listaConversaciones(request):
-#     mensajesMandados=Mensaje.objects.filter(emisor=request.user)
-#     mensajesRecibidos=Mensaje.objects.filter(receptor=request.user)
-
-#     contactosMensaje=[]
-#     for mensaje in mensajesMandados:
-#         receptor=mensaje.receptor
-#         if receptor not in contactosMensaje:
-#             contactosMensaje.append(receptor) #hay que ver cómo hacer para que no añada si ya existe
-#     for mensaje in mensajesRecibidos:
-#         emisor=mensaje.emisor
-#         if emisor not in contactosMensaje:
-#             contactosMensaje.append(emisor)
-#     return render(request, "accounts/conversaciones.html", {"contactosMensaje": contactosMensaje})
-
 @login_required
 def conversacion(request, usu):
-    #logging.error('Esto fue un gran error')
     perfiles=Perfil.objects.exclude(user=request.user)
     contacto=User.objects.filter(username=usu)
     contacto=contacto[0]
@@ -82,7 +49,6 @@ def conversacion(request, usu):
     return render(request, "accounts/conversacion.html", {"usu":usu, "usuario":usuario, "contacto": contacto, "perfiles": perfiles, "mensajesConUsuario":mensajesConUsuario, "categorias": obtenerCategorias(request)} )
 
   
-
 def signup(request):
     if request.method=="POST":
         form=UserRegisterForm(request.POST)
@@ -93,6 +59,10 @@ def signup(request):
     else:
         form=UserRegisterForm()
     return render(request, "accounts/signup.html", {"form":form, "categorias": obtenerCategorias(request)})
+
+def home(request):
+     posts=Post.objects.all()       
+     return render(request, 'Blog/inicio.html',{ 'posts': posts })
 
 def login_request(request):
     if request.method=="POST":
@@ -105,7 +75,9 @@ def login_request(request):
 
             if usuario is not None:
                 login(request, usuario)
-                return render(request, 'Blog/inicio.html', {'mensaje':f"Bienvenido {usuario}"})
+                posts=Post.objects.all()
+             
+                return render(request, 'Blog/inicio.html', {'mensaje':f"Bienvenido {usuario}", 'posts': posts })
             else:
                 return render(request, 'accounts/login.html',{"form":form,'mensaje': "Usuario o contraseña incorrectos"})
             

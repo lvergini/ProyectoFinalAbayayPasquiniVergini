@@ -1,4 +1,4 @@
-{% extends "Blog/padre_simple.html" %}
+{% extends "Blog/padre.html" %}
 
 {% load static %}
 
@@ -12,7 +12,7 @@
         <li> <strong>ISBN</strong>: {{ libro.isbn }}</li>
         <li> <strong>Fecha de publicación</strong>: {{ libro.fecha_publicacion }}</li>
         <li> <strong>Editorial</strong> : {{ libro.editorial }}</li>
-        <img src="/media/{{libro.imagen}}">
+        <img height="150px" width="150px" src="/media/{{libro.imagen}}">
     </ul>
 
 

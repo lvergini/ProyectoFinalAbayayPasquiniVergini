@@ -13,7 +13,7 @@
 }
 
 .thumbnail-container {
-  width:200px;
+ 
   height:200px;
 }
 
@@ -262,19 +262,23 @@ img.thumbnail2 {
 /* Inicio que dirige al about */
 .inicioAu{
   display: flex;
+  height: 300px;
   flex-direction: row;
   width: 100%;
-  background-color: rgba(156, 156, 156, 0.37);
-  margin-bottom: 20px;
+  background-image:url("../../../../media/portada.jpg");
+  margin-bottom: 30px;
+ 
 }
-
+.textojumbo
+{
+  color: white;
+}
 .textoInAu{
-  /* margin-right: 60%; */
   padding: 10px;
 }
 .botonInAu{
   background: none;
-  color: #37474f;
+  color: #ffffff;
   border: 4px solid #37474f;
   font-size: 13px;
   line-height: 16px;
@@ -295,7 +299,7 @@ button{
   padding: 9px 15px 7px;
   border-radius: 60px;
   cursor: pointer;
-  font-family: sans-serif;
+  font-family: sa3ns-serif;
     font-weight: 700;
     letter-spacing: .07rem;
     text-align: center;
