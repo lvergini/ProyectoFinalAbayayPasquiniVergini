@@ -134,7 +134,7 @@ def buscarPost(request): #para completar
         posts=Post.objects.filter(libro__titulo__icontains=libro)
         libros=Libro.objects.filter(titulo__icontains=libro)
         if len(libros)==0:
-            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{libro}" no pertenece a la base de datos'})
+            return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"El libro {libro}" no pertenece a la base de datos'})
         elif len(posts)!=0:
             return render(request, "Blog/resultadosBusquedaPost.html", {"libros":libros, "posts":posts})
         else:
@@ -146,7 +146,7 @@ def buscarPost(request): #para completar
         autores=User.objects.filter(username=autor)
         if len(posts)!=0:
             # posts=posts[0]
-            return render(request, "Blog/resultadosBusquedaPost.html", {"posts":posts, "posts":posts})
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts":posts})
         elif len(autores)==0:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{autor}" no coincide con un usuario registrado'})
         else:
