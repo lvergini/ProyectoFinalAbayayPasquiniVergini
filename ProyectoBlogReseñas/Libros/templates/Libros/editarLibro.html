@@ -7,7 +7,7 @@
 {% block cuerpodelapagina %}
 <h2>Está editando la información del libro {{ nombre_autor }} </h2>
 
-<form action="{% url 'EditarLibro' id %}" method="POST"> {% csrf_token %} 
+<form action="{% url 'EditarLibro' id %}" enctype="multipart/form-data" method="POST"> {% csrf_token %} 
 
 
     <table>
