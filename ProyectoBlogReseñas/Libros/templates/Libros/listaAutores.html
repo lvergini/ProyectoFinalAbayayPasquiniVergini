@@ -14,11 +14,13 @@
 
 <h1>Listado de autores: </h1>
 
-
+<ul>
 
     {% for autor in autores %}
-    <ul>
-    <li><a href="{% url 'AutorVista' autor.id %}"> {{ autor.apellido }}, {{ autor.nombre }} </a>   </li>
+
+    <li><h5> <a href="{% url 'AutorVista' autor.id %}"> {{ autor.apellido }}, {{ autor.nombre }} </a>    </h5></li>
+
+    <br>
     
     {% if user.is_staff %}
 <button>
@@ -27,12 +29,12 @@
 <button>
     <a href="{% url 'EditarAutor' autor.id %}"> Editar </a>
 </button>
-</ul>
+
 
     {% endif %}
 
     {% endfor %}
-
+</ul>
     {% if user.is_staff %}
     <a class="navbar-brand" href="{% url 'AutorCrear' %}">Agregar otro autor</a>´
     {% endif %}

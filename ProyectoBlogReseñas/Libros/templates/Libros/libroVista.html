@@ -15,6 +15,20 @@
         <img src="/media/{{libro.imagen}}">
     </ul>
 
+
+
+    {% if user.is_staff %}
+<button>
+    <a href="{% url 'EditarLibro' libro.id %}"> Editar </a>
+</button>
+<button>
+    <a href="{% url 'EliminarLibro' libro.id %}"> Eliminar  </a>
+</button>
+
+<hr>
+
+    {% endif %}
+
     {% if libro_posts %}
 
     <h5>Reseñas sobre {{ libro.titulo }}: </h5>
@@ -33,6 +47,8 @@
 
     {% endif %}
 
+    <br>
+    
     {% if request.user.is_authenticated %}
 
     <button>
