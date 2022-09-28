@@ -39,11 +39,13 @@
         <li>  <a href="{% url 'PostVista' post.id %}"> {{ post.titulo }}</a> </li>
         <li>Autor de la reseña: <a href="{% url 'profile' post.autor.pk %}">{{ post.autor }} </a> </li>
     </ul>
+
+    <br>
     {% endfor %}
 
     {% else %}
 
-    <h5> Todavía nadie ha subido una reseña sobre  {{ libro.titulo }}, de {{ libro.autor }}</h5>
+    <h5> Todavía nadie ha subido una reseña sobre  <em>{{ libro.titulo }}</em>, de {{ libro.autor }}</h5>
 
     {% endif %}
 
