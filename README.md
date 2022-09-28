@@ -7,6 +7,19 @@ El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que inc
 Branch a utilizar en Git: <b>master</b></br>
 Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber
 
+http://127.0.0.1:8000/ --- > dirige a la página de inicio.
+
+<h3> Usuarios no logueados:</h3>
+Pueden:
+<li>Ver reseñas en página de inicio</li>
+<li>Acceder al about --- > http://127.0.0.1:8000/about/  </li>
+<li> En navbar, con el dropdown "Libros", buscar un libro por título y/o apellido del autor(http://127.0.0.1:8000/libros/busquedaLibro/), ver lista de libros (http://127.0.0.1:8000/libros/listaLibros/), de autores (http://127.0.0.1:8000/libros/listaAutores/) y de editoriales (http://127.0.0.1:8000/libros/listaEditoriales/) </li>
+<li>Ver lista de todas las reseñas</li>
+<li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado</li>
+<li>Leer una reseña</li>
+<li>Acceder a perfiles de usuarios, por ejemplo, a través de enlace en la vista de una reseña hacia el perfil de su autor</li>
+<li>Registrarse o loguearse</li>
+
 <h3>Usuarios con perfil admin:</h3>
 
 <table>
@@ -39,15 +52,6 @@ Pueden:
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
 <li>Pueden comentar una reseña realizada por otro usuario.
 
-<h3> Usuarios no logueados:</h3>
-Pueden:
-<li> ver lista de autores, editoriales y libros; y buscar un libro</li>
-<li> </li>
-<li>Ver lista de todas las reseñas</li>
-<li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado</li>
-<li>Leer una reseña</li>
-<li>Acceder a perfiles de usuarios, por ejemplo, a través de enlace en la vista de una reseña hacia el perfil de su autor</li>
-<li>Registrarse o loguearse</li>
 
 <h3> Instalaciones requeridas: </h3>
 <li> Django: pip install Django==4.1.1 </li>
