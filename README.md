@@ -18,7 +18,7 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 	</tr>
 </table>
 
-  <li>Realiza la carga de libros, editoriales y autores para que estén disponibles para reseñar</li>
+  <li>Realiza el CRUD de libros, editoriales y autores para que estén disponibles para reseñar</li>
   <li>Pueden realizar reseñas</li>
  
 <h3> Usuarios finales:</h3>
@@ -31,11 +31,13 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 		<td>proyecto1234</td>
 	</tr>
 </table>
-<li>Pueden darse de alta y visualizar su perfil</li>
-<li>Escribir nuevas reseñas</li>
+<li>Pueden darse de alta, visualizar y editar su perfil</li>
+<li>Escribir nuevas reseñas de libros ya cargados</li>
 <li>Buscar reseñas sobre algun libro particular</li>
 <li>Enviar mensajes a otros usuarios del sitio</li>
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
+<li>Pueden comentar una reseña realizada por otro usuario.
+
   
   <h3>Responsabilidades:</h3>
  <p>Para el desarrollo del proyecto hemos realizado una primer reunión de coordinación para identificar tareas y responsables. Luego hemos ido asignando tiempo para el desarrollo y realizando otros encuentros virtuales para ir comprobando el avance y levantar dudas y bloqueos.</p>
@@ -48,7 +50,7 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
   <li>Desarrolló e implementó la funcionalidad de likes para cada post.</li>
   <li>Desarrolló e implentó comentarios para cada post.</li>
   <li>Subió la rama inicial del proyecto a Git</li>
-  <li>Trabajó en la funcionalidade de Mensajeria</li>
+  <li>Trabajó en la funcionalidad de Mensajeria</li>
   <li>Bug fixing general sobre app de Libros, Blog y accounts.</li>
   
   <h4>Mariana Abayay</h4>
