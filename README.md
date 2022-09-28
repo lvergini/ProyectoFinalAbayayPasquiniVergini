@@ -37,8 +37,6 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 <li>Enviar mensajes a otros usuarios del sitio</li>
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
   
-  <h3>Funcionalidades:</h3>
-  
   <h3>Responsabilidades:</h3>
  <p>Para el desarrollo del proyecto hemos realizado una primer reunión de coordinación para identificar tareas y responsables. Luego hemos ido asignando tiempo para el desarrollo y realizando otros encuentros virtuales para ir comprobando el avance y levantar dudas y bloqueos.</p>
   
@@ -72,7 +70,7 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
   
   Durante la fase de desarrollo del sistema se han ido documentando pruebas de sistema sobre distintos modulos. Las mismas han sido documentadas en el archivo: Planilla_Pruebas_de_Sistema_Coderhouse.xlsx subido a ésta plataforma.
   
- DEMO:
+<h3> Funcionalidades y demo</h3>
  Se adjunta video con demo del sitio.
  La misma cubrió las siguientes funcionalidades:
   Arranque del proyecto: http://127.0.0.1:8000/
