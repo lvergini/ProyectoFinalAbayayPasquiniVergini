@@ -7,7 +7,7 @@ El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que inc
 Branch a utilizar en Git: <b>master</b></br>
 Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber
 
-<h3>Usuarios con perfil ADMIN:</h3>
+<h3>Usuarios con perfil admin:</h3>
 
 <table>
 	<th>Username</th>
@@ -16,7 +16,7 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 		<td>admin</td>
 		<td>proyecto1234</td>
 	</tr>
-</table<>
+</table>
 
   <li>Realiza la carga de libros, editoriales y autores para que estén disponibles para reseñar</li>
   <li>Pueden realizar reseñas</li>
