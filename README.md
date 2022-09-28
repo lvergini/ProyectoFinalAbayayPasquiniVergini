@@ -53,3 +53,29 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
   
   Durante la fase de desarrollo del sistema se han ido documentando pruebas de sistema sobre distintos modulos. Las mismas han sido documentadas en el archivo: Planilla_Pruebas_de_Sistema_Coderhouse.xlsx subido a ésta plataforma.
   
+ DEMO:
+ Se adjunta video con demo del sitio.
+ La misma cubrió las siguientes funcionalidades:
+  Arranque del proyecto.
+	- se muestran las opciones que se ven, una revisión sobre la estructura de la pagina y las opciones de la nav bar.
+	- se visualiza el about us.
+- Se muestra que funciona el admin de Django.
+- Se loguea con usuario admin.
+	- Se muestra todo lo relacionado con la carga ed libros que es lo que esta restringido solo a los admins.
+		Carga de libro, se hace enfasis en imagen.
+		Edición
+- Se desloguea
+- Se loguea usuario final
+	- se muestra que hay cosas q no puede hacer
+	- carga una reseña, haciendo enfasis en ckeditor y en los dropdowns pre rellenados.
+	- Busca reseña
+	- la edita
+	- la visualiza en el home
+	- le manda un mensaje a un usuario.
+
+- Se desloguea
+- Se loguea con otro usuario
+	- se visualiza en la home la reseña que habia creadoe l otro usuario
+	- entra a sus mensajes
+		- mira mensajes
+		- responde
