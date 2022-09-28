@@ -1,4 +1,4 @@
-# ProyectoFinalAbayayPasquiniVergini
+# ProyectoFinal-Abayay, Pasquini, Vergini
 
 <h1>Libroteca de Opiniones</h1>
 
