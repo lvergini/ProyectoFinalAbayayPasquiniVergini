@@ -14,6 +14,7 @@ Pueden:
 <li>Ver reseñas en página de inicio</li>
 <li>Acceder al about --- > http://127.0.0.1:8000/about/  </li>
 <li> En navbar, con el dropdown "Libros", buscar un libro por título y/o apellido del autor(http://127.0.0.1:8000/libros/busquedaLibro/), ver lista de libros (http://127.0.0.1:8000/libros/listaLibros/), de autores (http://127.0.0.1:8000/libros/listaAutores/) y de editoriales (http://127.0.0.1:8000/libros/listaEditoriales/) </li>
+<li>Desde navbar, con el dropdown "Categoría", ver la lista de categorías cargadas y acceder a alguna. Si la cateogoría tiene reseñas (por ej, "ficción argentina"--- > [http://127.0.0.1:8000/about/](http://127.0.0.1:8000/categoria/1/) ) , ver listado de las reseñas en esa categoría. Si no hay ninguna reseña (por ej, "filosofía"--- >  http://127.0.0.1:8000/categoria/5/", va a aprecer mensaje "Todavía no hay ninguna reseña en la categoría" </li>
 <li>Ver lista de todas las reseñas</li>
 <li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado</li>
 <li>Leer una reseña</li>
