@@ -6,8 +6,13 @@
 
 El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que incluyan sus opiniones sobre determinados libros.
 
+<h3> Instalaciones requeridas: </h3>
+<li> Django: pip install Django==4.1.1 </li>
+<li> CKEditor: pip install django-ckeditor </li>
+<li> CrispyForms: pip install django-crispy-forms </li>
+
 Branch a utilizar en Git: <b>master</b>
-<p>Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber:</p>
+<p>Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos, así como en el caso de los usuarios no logueados. A saber:</p>
 
 http://127.0.0.1:8000/ --- > dirige a la página de inicio.
 
@@ -21,7 +26,7 @@ Pueden:
 <li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado (http://127.0.0.1:8000/busquedaPost/) </li>
 <li>Leer una reseña, por ejemplo, http://127.0.0.1:8000/post/11 . El usuario no logueado puede ver la cantidad de likes y los comentarios a la reseña, pero no puede dar like ni comentar.  </li>
 <li>Acceder a perfiles de usuarios, por ejemplo, a través de enlace en la vista de una reseña hacia el perfil de su autor</li>
-<li>Registrarse o loguearse</li>
+<li>Registrarse (http://127.0.0.1:8000/accounts/signup/) o loguearse (http://127.0.0.1:8000/accounts/login/)</li>
 
 <h3>Usuarios con perfil admin:</h3>
 
@@ -34,7 +39,7 @@ Pueden:
 	</tr>
 </table>
 
-  <li>Realiza el CRUD de libros, editoriales y autores para que estén disponibles para reseñar</li>
+  <li>Realiza el CRUD de libros (http://127.0.0.1:8000/libros/libroCrear/, http://127.0.0.1:8000/libros/editarLibro/1, http://127.0.0.1:8000/libros/eliminarLibro/1), de editoriales (http://127.0.0.1:8000/libros/editorialCrear/, http://127.0.0.1:8000/libros/editarEditorial/1, http://127.0.0.1:8000/libros/eliminarEditorial/1) y autores (http://127.0.0.1:8000/libros/autorCrear/, http://127.0.0.1:8000/libros/editarAutor/1, http://127.0.0.1:8000/libros/eliminarAutor/1) para que estén disponibles para reseñar</li>
   <li>Pueden realizar reseñas</li>
  
 <h3> Usuarios finales:</h3>
@@ -47,19 +52,12 @@ Pueden:
 		<td>proyecto1234</td>
 	</tr>
 </table>
-Pueden:
-<li>darse de alta, visualizar y editar su perfil</li>
-<li>Escribir nuevas reseñas de libros ya cargados</li>
-<li>Buscar reseñas sobre algun libro particular</li>
-<li>Enviar mensajes a otros usuarios del sitio</li>
+Además de todo lo que puede hacer un usuario no logueado, pueden: 
+<li> Visualizar (http://127.0.0.1:8000/accounts/profile/2) y editar (http://127.0.0.1:8000/accounts/editarPerfil/) su perfil</li>
+<li>Escribir nuevas reseñas de libros ya cargados (http://127.0.0.1:8000/crearPost/), y editar (http://127.0.0.1:8000/editarPost/15) y eliminar (http://127.0.0.1:8000/eliminarPost/15) solo las reseñas que escribieron </li>
+<li>Enviar mensajes a otros usuarios del sitio, desde una página en la que se listan todos los usuarios y se va ingresando a la conversación con cada uno (http://127.0.0.1:8000/accounts/conversacion/nicole/)</li>
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
 <li>Pueden comentar una reseña realizada por otro usuario.
-
-
-<h3> Instalaciones requeridas: </h3>
-<li> Django: pip install Django==4.1.1 </li>
-<li> CKEditor: pip install django-ckeditor </li>
-<li> CrispyForms: pip install django-crispy-forms </li>
 
   <h3>Responsabilidades:</h3>
  <p>Para el desarrollo del proyecto hemos realizado una primer reunión de coordinación para identificar tareas y responsables. Luego hemos ido asignando tiempo para el desarrollo y realizando otros encuentros virtuales para ir comprobando el avance y levantar dudas y bloqueos.</p>
