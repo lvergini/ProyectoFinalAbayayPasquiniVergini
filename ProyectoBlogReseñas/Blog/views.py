@@ -120,7 +120,7 @@ def buscarPost(request):
         if len(autores)==0:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{autor}" no coincide con un usuario registrado'})
         elif len(posts)!=0:
-            return render(request, "Blog/resultadosBusquedaPost.html")
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts": posts})
         else:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"{libro} no se encuentra en la base de datos, pruebe buscar otra reseña de {autor}'})
       
