@@ -4,6 +4,7 @@
 
 El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que incluyan sus opiniones sobre determinados libros.
 
+Branch a utilizar en Git: <b>master</b>
 Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber
 
 <h3>Usuarios con perfil ADMIN:</h3>
