@@ -38,7 +38,11 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
 <li>Pueden comentar una reseña realizada por otro usuario.
 
-  
+<h3> Instalaciones requeridas: </h3>
+Django: pip install Django==4.1.1
+CKEditor: pip install django-ckeditor
+CrispyForms: pip install django-crispy-forms
+
   <h3>Responsabilidades:</h3>
  <p>Para el desarrollo del proyecto hemos realizado una primer reunión de coordinación para identificar tareas y responsables. Luego hemos ido asignando tiempo para el desarrollo y realizando otros encuentros virtuales para ir comprobando el avance y levantar dudas y bloqueos.</p>
   
