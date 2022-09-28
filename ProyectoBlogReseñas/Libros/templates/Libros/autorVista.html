@@ -6,17 +6,18 @@
 
 {% block cuerpodelapagina %}
 
+<style type="text/css">
+    h3 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:black;
+        background-color: gainsboro; 
+</style>
 
-<ul>
 
-    <li> <h3> <strong>Nombre</strong>: {{ autor.nombre }}</h3></li>
-    <li> <h3> <strong>Apellido</strong>: {{ autor.apellido }}</h3></li>
-
-</ul>
 
     {% if libros %}
 
-    <h3>Libros de {{ autor.nombre }} {{ autor.apellido }}: </h3>
+    <h3>Libros de <strong>{{ autor.nombre }} {{ autor.apellido }}</strong>: </h3>
 
     {% for libro in libros %}
 
