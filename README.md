@@ -1,11 +1,13 @@
 # ProyectoFinal - Abayay, Pasquini, Vergini
 
 <h1>Libroteca de Opiniones</h1>
+<h2>Video Demo</h2>
+<p><a href="https://drive.google.com/file/d/1UEE-MpZ6jUB22bHuDPdS4sa9UVcFbvRE/view">Link a Demo del Proyecto</a></p>
 
 El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que incluyan sus opiniones sobre determinados libros.
 
-Branch a utilizar en Git: <b>master</b></br>
-Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber
+Branch a utilizar en Git: <b>master</b>
+<p>Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber:</p>
 
 http://127.0.0.1:8000/ --- > dirige a la página de inicio.
 
