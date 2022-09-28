@@ -16,7 +16,6 @@ class CrearPost(forms.Form):
     subtitulo=forms.CharField(max_length=250)
     categoria=MyCategoriaChoiceField(queryset=Categoria.objects.all())
     libro=MyLibroChoiceField(queryset=Libro.objects.all())
-    imagen= forms.ImageField(required=False, label="Imagen")
     cuerpo=forms.CharField(widget=CKEditorWidget)
 
 class CrearCategoria(forms.Form):

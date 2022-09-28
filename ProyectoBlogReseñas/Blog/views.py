@@ -31,9 +31,8 @@ def crearPost(request):
             subtitulo= info['subtitulo']
             categoria=Categoria.objects.get(pk = info["categoria"].id)
             libro= Libro.objects.get(pk = info["libro"].id)
-            imagen= info['imagen']
             cuerpo=info['cuerpo']
-            post=Post(titulo=titulo, subtitulo=subtitulo, categoria=categoria, libro=libro, imagen=imagen, cuerpo=cuerpo, autor=autor)
+            post=Post(titulo=titulo, subtitulo=subtitulo, categoria=categoria, libro=libro, cuerpo=cuerpo, autor=autor)
             post.save()
             return render(request, "Blog/inicio.html", {"mensaje": f"Se creó el post {titulo}"})
         else:
@@ -100,13 +99,12 @@ def editarPost(request, id):
                   posteo.titulo=info["titulo"]
                   posteo.subtitulo=info["subtitulo"]
                   posteo.categoria=Categoria.objects.get(pk = info["categoria"].id)
-                  posteo.libro=Libro.objects.get(pk = info["libro"].id)
-                  posteo.imagen=info["imagen"]
+                  posteo.libro=Libro.objects.get(pk = info["libro"].id)             
                   posteo.cuerpo=info["cuerpo"]
                   posteo.save()    
                   return render(request, "Blog/pages.html", {"postsPag": posts})
       else:
-            form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo})
+            form=CrearPost(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "categoria":posteo.categoria, "libro":posteo.libro, "cuerpo":posteo.cuerpo})
             return render(request, "Blog/editarPost.html", {"formulario": form, "titulo_post": posteo.titulo, "id":posteo.id, "postsPag": posts})
 
 def busquedaPost(request): 
