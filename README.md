@@ -17,7 +17,7 @@ Pueden:
 <li>Desde navbar, con el dropdown "Categoría", ver la lista de categorías cargadas y acceder a alguna. Si la cateogoría tiene reseñas (por ej, "ficción argentina"--- > http://127.0.0.1:8000/categoria/1/ ) , ver listado de las reseñas en esa categoría. Si no hay ninguna reseña (por ej, "filosofía"--- >  http://127.0.0.1:8000/categoria/5/", va a aprecer mensaje "Todavía no hay ninguna reseña en la categoría" </li>
 <li>Ver lista de todas las reseñas; por cada una, se ve fecha de publicación, título, subtítulo, autor, categoría y primera parte del texto a traves de slice (http://127.0.0.1:8000/pages/). El template está paginado; al final de la página se puede acceder a la primera, anterior, etc. pág, según corresponda </li>
 <li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado (http://127.0.0.1:8000/busquedaPost/) </li>
-<li>Leer una reseña</li>
+<li>Leer una reseña, por ejemplo, http://127.0.0.1:8000/post/11 . El usuario no logueado puede ver la cantidad de likes y los comentarios a la reseña, pero no puede dar like ni comentar.  </li>
 <li>Acceder a perfiles de usuarios, por ejemplo, a través de enlace en la vista de una reseña hacia el perfil de su autor</li>
 <li>Registrarse o loguearse</li>
 
