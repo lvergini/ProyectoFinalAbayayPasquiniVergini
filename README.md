@@ -30,7 +30,7 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 		<td>nicole</td>
 		<td>proyecto1234</td>
 	</tr>
-</table<>
+</table>
 <li>Pueden darse de alta y visualizar su perfil</li>
 <li>Escribir nuevas reseñas</li>
 <li>Buscar reseñas sobre algun libro particular</li>
