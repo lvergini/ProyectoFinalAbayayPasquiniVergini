@@ -175,7 +175,7 @@ def categoriaPosts(request, pk):
       if len(categoria)!=0:
             categoria=categoria[0]
             categoria_posts=Post.objects.filter(categoria__id=pk)
-            return render(request, "Blog/categoria.html", {"pk":pk, "categoria_posts":categoria_posts, "categorias": obtenerCategorias(request)} )
+            return render(request, "Blog/categoria.html", {"pk":pk, "categoria": categoria, "categoria_posts":categoria_posts, "categorias": obtenerCategorias(request)} )
       else:
             return render(request, "Blog/categoria.html", {"pk":pk, "mensaje": f"Todavía no fue creada la categoría {categoria}", "categorias": obtenerCategorias(request)} )
 
