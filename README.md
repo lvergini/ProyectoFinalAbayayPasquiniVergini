@@ -4,15 +4,33 @@
 
 El sitio web tiene como objetivo que los usuarios puedan cargar reseñas que incluyan sus opiniones sobre determinados libros.
 
-Branch a utilizar en Git: <b>master</b>
+Branch a utilizar en Git: <b>master</b></br>
 Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcionalidades están basadas en los mismos. A saber
 
 <h3>Usuarios con perfil ADMIN:</h3>
+
+<table>
+	<th>Username</th>
+	<th>Password </th>
+	<tr>
+		<td>admin</td>
+		<td>proyecto1234</td>
+	</tr>
+</table<>
 
   <li>Realiza la carga de libros, editoriales y autores para que estén disponibles para reseñar</li>
   <li>Pueden realizar reseñas</li>
  
 <h3> Usuarios finales:</h3>
+	
+<table>
+	<th>Username</th>
+	<th>Password </th>
+	<tr>
+		<td>nicole</td>
+		<td>proyecto1234</td>
+	</tr>
+</table<>
 <li>Pueden darse de alta y visualizar su perfil</li>
 <li>Escribir nuevas reseñas</li>
 <li>Buscar reseñas sobre algun libro particular</li>
@@ -57,26 +75,25 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
  DEMO:
  Se adjunta video con demo del sitio.
  La misma cubrió las siguientes funcionalidades:
-  Arranque del proyecto.
+  Arranque del proyecto: http://127.0.0.1:8000/
 	- se muestran las opciones que se ven, una revisión sobre la estructura de la pagina y las opciones de la nav bar.
-	- se visualiza el about us.
-- Se muestra que funciona el admin de Django.
+	- se visualiza el about us: http://127.0.0.1:8000/about/
+- Se muestra que funciona el admin de Django: http://127.0.0.1:8000/admin
 - Se loguea con usuario admin.
 	- Se muestra todo lo relacionado con la carga ed libros que es lo que esta restringido solo a los admins.
-		Carga de libro, se hace enfasis en imagen.
-		Edición
-- Se desloguea
+		Carga de libro, se hace enfasis en imagen: http://127.0.0.1:8000/libros/libroCrear/
+- Se desloguea: http://127.0.0.1:8000/accounts/logout/
 - Se loguea usuario final
 	- se muestra que hay cosas q no puede hacer
-	- carga una reseña, haciendo enfasis en ckeditor y en los dropdowns pre rellenados.
-	- Busca reseña
-	- la edita
+	- carga una reseña, haciendo enfasis en ckeditor y en los dropdowns pre rellenados: http://127.0.0.1:8000/crearPost/
+	- Busca reseña: http://127.0.0.1:8000/busquedaPost/
+	- la edita: http://127.0.0.1:8000/editarPost/15
 	- la visualiza en el home
-	- le manda un mensaje a un usuario.
+	- le manda un mensaje a un usuario: http://127.0.0.1:8000/accounts/conversacion/nicole/
 
 - Se desloguea
 - Se loguea con otro usuario
 	- se visualiza en la home la reseña que habia creadoe l otro usuario
-	- entra a sus mensajes
+	- entra a sus mensajes: http://127.0.0.1:8000/accounts/conversacion/nicole/
 		- mira mensajes
-		- responde
+		- responde: http://127.0.0.1:8000/accounts/conversacion/admin/
