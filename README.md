@@ -31,12 +31,23 @@ Hay 2 tipos de usuarios. Usuarios administradores y usuarios finales. Las funcio
 		<td>proyecto1234</td>
 	</tr>
 </table>
-<li>Pueden darse de alta, visualizar y editar su perfil</li>
+Pueden:
+<li>darse de alta, visualizar y editar su perfil</li>
 <li>Escribir nuevas reseñas de libros ya cargados</li>
 <li>Buscar reseñas sobre algun libro particular</li>
 <li>Enviar mensajes a otros usuarios del sitio</li>
 <li>Pueden dar <i>like</i> a una reseña realizada por otro usuario.
 <li>Pueden comentar una reseña realizada por otro usuario.
+
+<h3> Usuarios no logueados:</h3>
+Pueden:
+<li> ver lista de autores, editoriales y libros; y buscar un libro</li>
+<li> </li>
+<li>Ver lista de todas las reseñas</li>
+<li>Buscar reseñas sobre algun libro particular, o escritas por un usuario determinado</li>
+<li>Leer una reseña</li>
+<li>Acceder a perfiles de usuarios, por ejemplo, a través de enlace en la vista de una reseña hacia el perfil de su autor</li>
+<li>Registrarse o loguearse</li>
 
 <h3> Instalaciones requeridas: </h3>
 <li> Django: pip install Django==4.1.1 </li>
