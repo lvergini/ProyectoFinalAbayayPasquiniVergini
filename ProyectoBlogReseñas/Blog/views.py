@@ -133,7 +133,7 @@ def buscarPost(request):
         if len(libros)==0:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'"El libro {libro}" no pertenece a la base de datos'})
         elif len(posts)!=0:
-            return render(request, "Blog/resultadosBusquedaPost.html", {"libros":libros, "posts":posts})
+            return render(request, "Blog/resultadosBusquedaPost.html", {"posts":posts})
         else:
             return render(request, "Blog/resultadosBusquedaPost.html", {"mensaje_busqueda": f'No hay reseñas del libro "{libro}"'})
 
